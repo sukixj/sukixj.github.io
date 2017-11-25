@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NOIP 复习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="- 图的存储
+邻接矩阵map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n2），时间复杂度O（n2）
+1234567891011void Adjacency matrix() &amp;#123;	for(int i=1;i&amp;lt;=m;i++) &amp;#123;		int u,v,c;		scanf(&quot;%d%d%d&quot;,&amp;amp;u,&amp;amp;v,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有趣的图论">
+<meta property="og:url" content="http://sukixj.github.io/2017/10/19/graph/index.html">
+<meta property="og:site_name" content="Yuki">
+<meta property="og:description" content="- 图的存储
+邻接矩阵map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n2），时间复杂度O（n2）
+1234567891011void Adjacency matrix() &amp;#123;	for(int i=1;i&amp;lt;=m;i++) &amp;#123;		int u,v,c;		scanf(&quot;%d%d%d&quot;,&amp;amp;u,&amp;amp;v,">
+<meta property="og:image" content="https://i.loli.net/2017/10/18/59e73e7036d19.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-8c01c51a462df0b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-2ea1d0ed2ecfaa24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-34c0ab6d258f946c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-2769e3665a4ca6f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-37adb9e9795865e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-8a39271334f6870f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-acdc4abe4fbc20a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-29T13:01:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有趣的图论">
+<meta name="twitter:description" content="- 图的存储
+邻接矩阵map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n2），时间复杂度O（n2）
+1234567891011void Adjacency matrix() &amp;#123;	for(int i=1;i&amp;lt;=m;i++) &amp;#123;		int u,v,c;		scanf(&quot;%d%d%d&quot;,&amp;amp;u,&amp;amp;v,">
+<meta name="twitter:image" content="https://i.loli.net/2017/10/18/59e73e7036d19.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sukixj.github.io/2017/10/19/graph/"/>
+
+
+
+
+
+  <title>有趣的图论 | Yuki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's You</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/10/19/graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">有趣的图论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T17:03:22+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="图的存储"><a href="#图的存储" class="headerlink" title="- 图的存储"></a>- 图的存储</h1><ul>
+<li><h2 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h2><p><strong>map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n<sup>2</sup>），时间复杂度O（n<sup>2</sup>）</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> Adjacency <span class="title">matrix</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">		<span class="keyword">int</span> u,v,c;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;c);</div><div class="line">		<span class="built_in">map</span>[u][v]=c;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h2><p><strong>使用vector存储，开n个vector，每个代表一个节点，它后面的数就是这个节点能连向哪个节点。空间复杂度会因为不会扫到没有用的边而降到O（m）</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> Adjacency <span class="title">list</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; ve[MAXN];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">		<span class="keyword">int</span> u,v,c;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;c);</div><div class="line">		ve[u].push_back(v);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=ve[i].size();j++) &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="边表（前向星）"><a href="#边表（前向星）" class="headerlink" title="边表（前向星）"></a>边表（前向星）</h2><p><strong>边表是图的一种存储结构，用来描述图上的每一个点。对图的每个边进行编号，对图的每个顶点建立一个链表（n个顶点建立n个链表），第i个容器中的结点包含以顶点Vi为起点的所有边的编号。<br>边表与邻接表的区别：边表存储了以点为起点的边的信息，邻接表存储了以点为出发点的点的信息。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Edge &#123;</div><div class="line">    <span class="keyword">int</span> nxt,to,cost;</div><div class="line">&#125;e[MAXN];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span> </span>&#123;</div><div class="line">    num++;</div><div class="line">    e[num].to=v;</div><div class="line">    e[num].cost=w;</div><div class="line">    e[num].nxt=head[u];</div><div class="line">    head[u]=num;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">        <span class="keyword">int</span> u,v,w;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;w);</div><div class="line">        insert(u,v,w);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].nxt) &#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="最短路问题"><a href="#最短路问题" class="headerlink" title="- 最短路问题"></a>- 最短路问题</h1><ul>
+<li><h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2>迪杰斯特拉算法是由荷兰计算机科学家<a href="https://baike.baidu.com/item/%E7%8B%84%E5%85%8B%E6%96%AF%E7%89%B9%E6%8B%89" target="_blank" rel="external">Dijkstra</a>于1959 年提出的，因此又叫<a href="https://baike.baidu.com/item/%E7%8B%84%E5%85%8B%E6%96%AF%E7%89%B9%E6%8B%89%E7%AE%97%E6%B3%95" target="_blank" rel="external">Dijkstra算法</a>。是从一个顶点到其余各顶点的<a href="https://baike.baidu.com/item/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84" target="_blank" rel="external">最短路径</a>算法，解决的是有向图中最短路径问题。迪杰斯特拉算法主要特点是以起始点为中心向外层层扩展，直到扩展到终点为止。<br><strong>时间复杂度为O（n<sup>2</sup>），不能处理存在负边权的情况，求单源最短路</strong>。</li>
+<li><h4 id="算法实现："><a href="#算法实现：" class="headerlink" title="算法实现："></a>算法实现：</h4><p><strong>每次找到一个能到达的最近的点，来更新到达其他点的距离。</strong>如图：<br><img src="https://i.loli.net/2017/10/18/59e73e7036d19.gif" alt=""></p>
+<p> 设起点为s，dis[v]表示从s到v的最短路径，pre[v]为v的前驱节点，用来输出路径。</p>
+<pre><code>初始化：dis[v]=∞(v≠s); dis[s]=0; pre[s]=0; 
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">for (i = 1; i &lt;= n ; i++)</div><div class="line">          1.在没有被访问过的点中找一个顶点u使得dis[u]是最小的。</div><div class="line">          2.u标记为已确定最短路径</div><div class="line">          3.for 与u相连的每个未确定最短路径的顶点v</div><div class="line">            if  (dis[u]+w[u][v] &lt; dis[v])  &#123;</div><div class="line">                dis[v] = dis[u] + w[u][v];</div><div class="line">                pre[v] = u;</div><div class="line">             &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p> 算法结束：dis[v]为s到v的最短距离；pre[v]为v的前驱节点，用来输出路径。</p>
+<ul>
+<li><h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span>  MAXINT = <span class="number">32767</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXNUM = <span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> dist[MAXNUM];</div><div class="line"><span class="keyword">int</span> prev[MAXNUM];</div><div class="line"></div><div class="line"><span class="keyword">int</span> A[MAXUNM][MAXNUM];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dijkstra</span><span class="params">(<span class="keyword">int</span> v0)</span> </span>&#123;</div><div class="line">	<span class="keyword">bool</span> S[MAXNUM];                                  <span class="comment">// 判断是否已存入该点到S集合中</span></div><div class="line">	<span class="keyword">int</span> n=MAXNUM;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; ++i) &#123;</div><div class="line">		dist[i] = A[v0][i];</div><div class="line">		S[i] = <span class="literal">false</span>;                                <span class="comment">// 初始都未用过该点</span></div><div class="line">		<span class="keyword">if</span>(dist[i] == MAXINT)</div><div class="line">			prev[i] = <span class="number">-1</span>;</div><div class="line">		<span class="keyword">else</span></div><div class="line">			prev[i] = v0;</div><div class="line">		　　</div><div class="line">	&#125;</div><div class="line">	dist[v0] = <span class="number">0</span>;</div><div class="line">	S[v0] = <span class="literal">true</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++) &#123;</div><div class="line">		<span class="keyword">int</span> mindist = MAXINT;</div><div class="line">		<span class="keyword">int</span> u = v0;             </div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=n; ++j)						<span class="comment">// 找出当前未使用的点j的dist[j]最小值</span></div><div class="line">	        <span class="keyword">if</span>((!S[j]) &amp;&amp; dist[j]&lt;mindist) &#123;</div><div class="line">		        u = j;                              <span class="comment">// u保存当前邻接点中距离最小的点的号码</span></div><div class="line">				mindist = dist[j];		　　</div><div class="line">			&#125;</div><div class="line">		S[u] = <span class="literal">true</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=n; j++)</div><div class="line">			<span class="keyword">if</span>((!S[j]) &amp;&amp; A[u][j]&lt;MAXINT) &#123;</div><div class="line">				<span class="keyword">if</span>(dist[u] + A[u][j] &lt; dist[j]) &#123;   <span class="comment">//在通过新加入的u点路径找到离v0点更短的路径</span></div><div class="line">				    dist[j] = dist[u] + A[u][j];    <span class="comment">//更新dist</span></div><div class="line">					prev[j] = u;                    <span class="comment">//记录前驱顶点	　　</span></div><div class="line">				&#125;	　    　</div><div class="line">			&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h2><p>Floyd算法又称为插点法，是一种利用<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92" target="_blank" rel="external">动态规划</a>的思想寻找给定的<a href="https://baike.baidu.com/item/%E5%8A%A0%E6%9D%83%E5%9B%BE" target="_blank" rel="external">加权图</a>中多源点之间<a href="https://baike.baidu.com/item/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84" target="_blank" rel="external">最短路径</a>的算法，与Dijkstra算法类似。该算法名称以创始人之一、1978年<a href="https://baike.baidu.com/item/%E5%9B%BE%E7%81%B5%E5%A5%96" target="_blank" rel="external">图灵奖</a>获得者、斯坦福大学计算机科学系教授<a href="https://baike.baidu.com/item/%E7%BD%97%E4%BC%AF%E7%89%B9%C2%B7%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7" target="_blank" rel="external">Robert W·Floyd</a>命名。<br><strong>时间复杂度O（n<sup>3</sup>）,可以处理所有图，多源最短路。</strong></p>
+<h4 id="算法实现：-1"><a href="#算法实现：-1" class="headerlink" title="算法实现："></a>算法实现：</h4><p><strong>假设有三个点 i,j,k，i连向 j，i 连向 k，k 连向 j，i 到 j 的最短路就是 i 到 j 的路径和 i 到 k 的路径加 k 到 j 的路径和较短的那个。</strong></p>
+<h4 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">floyd</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="built_in">memset</span>(dist,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(dist));</div><div class="line">	<span class="built_in">memset</span>(<span class="built_in">map</span>,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(<span class="built_in">map</span>));</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++) </div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</div><div class="line">		dist[i][j]=min(<span class="built_in">map</span>[i][j],<span class="built_in">map</span>[i][k]+<span class="built_in">map</span>[k][j]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h2><p>SPFA（Shortest Path Faster Algorithm）（队列优化）算法是求单源<a href="https://baike.baidu.com/item/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84" target="_blank" rel="external">最短路径</a>的一种算法，它还有一个重要的功能是判负环（在差分约束系统中会得以体现），在<a href="https://baike.baidu.com/item/Bellman-ford" target="_blank" rel="external">Bellman-ford</a>算法的基础上加上一个队列优化，减少了冗余的<a href="https://baike.baidu.com/item/%E6%9D%BE%E5%BC%9B%E6%93%8D%E4%BD%9C" target="_blank" rel="external">松弛操作</a>，是一种高效的最短路算法。<br><strong>期望时间复杂度O（ME）其中M为所有顶点进队的平均次数，可以证明M一般小于等于2n：</strong> <em>“算法编程后实际运算情况表明m一般没有超过2n.事实上顶点入队次数M是一个不容易事先分析出来的数,但它确是一个随图的不同而略有不同的常数.所谓常数,就是与E无关,与n也无关,仅与边的权值分布有关.一旦图确定,权值确定,原点确定,E就是一个确定的常数.所以SPFA算法复杂度为O(E).证毕”（SPFA的论文）。</em> <strong>不过这个证明好像是错误的，所以SPFA的复杂度纯粹看脸，一般还是比较快的。<del>出题人我给你糖吃。</del></strong><br><strong>单源最短路，不过可以处理有负边权的情况，但是无法处理负环图，可判断负环。（如果某个点进入队列的次数超过N次则存在负环，一般用dfs判断）</strong></p>
+</li>
+<li><h4 id="算法实现：-2"><a href="#算法实现：-2" class="headerlink" title="算法实现："></a>算法实现：</h4><p>我们采取的方法是动态逼近法：设立一个先进先出的队列用来保存待优化的结点，优化时每次取出队首结点u，并且用u点当前的最短路径估计值对离开u点所指向的结点v进行松弛操作，如果v点的最短路径估计值有所调整，且v点不在当前的队列中，就将v点放入队尾。这样不断从队列中取出结点来进行松弛操作，直至队列空为止。</p>
+</li>
+</ul>
+<p>优化：<br>SPFA算法有两个优化策略SLF和LLL——SLF：Small Label First 策略，设要加入的节点是j，队首元素为i，若dist(j)<dist(i)，则将j插入队首，否则插入队尾； lll：large="" label="" last="" 策略，设队首元素为i，队列中所有dist值的平均值为x，若dist(i)="">x则将i插入到队尾，查找下一元素，直到找到某一i使得dist(i)&lt;=x，则将i出队进行松弛操作。 SLF 可使速度提高 15 ~ 20%；SLF + LLL 可提高约 50%。</dist(i)，则将j插入队首，否则插入队尾；></p>
+<ul>
+<li><h4 id="代码实现：-2"><a href="#代码实现：-2" class="headerlink" title="代码实现："></a>代码实现：</h4></li>
+<li><p>判断负环：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">spfa_dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</div><div class="line">	vis[u]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=f[u]; k!=<span class="number">0</span>; k=e[k].next) &#123;</div><div class="line">		<span class="keyword">int</span> v=e[k].v,w=e[k].w;</div><div class="line">		<span class="keyword">if</span>(dis[u]+w&lt;dis[v]) &#123;</div><div class="line">			dis[v]=dis[u]+w;</div><div class="line">			<span class="keyword">if</span>(!vis[v]) &#123;</div><div class="line">				<span class="keyword">if</span>(spfa_dfs(v))</div><div class="line">					<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">			&#125; <span class="keyword">else</span></div><div class="line">				<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	vis[u]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>一般SPFA：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">10010</span>;i++)dist[i]=<span class="number">2147483647</span>;</div><div class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">    dist[s]=<span class="number">0</span>;</div><div class="line">    vis[s]=<span class="number">1</span>;</div><div class="line">    q.push(s);</div><div class="line">    <span class="keyword">while</span>(!q.empty()) &#123;</div><div class="line">        <span class="keyword">int</span> u=q.front();</div><div class="line">        q.pop();</div><div class="line">        vis[u]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].next) &#123;</div><div class="line">            <span class="keyword">int</span> to=e[i].to;</div><div class="line">            <span class="keyword">if</span>(dist[to]&gt;dist[u]+e[i].cost) &#123;</div><div class="line">                dist[to]=dist[u]+e[i].cost;</div><div class="line">                <span class="keyword">if</span>(!vis[to]) &#123;</div><div class="line">                    vis[to]=<span class="number">1</span>;</div><div class="line">                    q.push(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>SLF优化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s)</span> </span>&#123;</div><div class="line">    fill(dis,dis+n+<span class="number">1</span>,<span class="number">2147483647</span>);</div><div class="line">    <span class="built_in">deque</span> &lt;<span class="keyword">int</span>&gt; q;</div><div class="line">    dis[s]=<span class="number">0</span>;</div><div class="line">    vis[s]=<span class="number">1</span>;</div><div class="line">    q.push_back(s);</div><div class="line">    <span class="keyword">while</span>(!q.empty()) &#123;</div><div class="line">        <span class="keyword">int</span> u=q.front();</div><div class="line">        q.pop_front();</div><div class="line">        vis[u]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].nxt) &#123;</div><div class="line">            <span class="keyword">int</span> to=e[i].to;</div><div class="line">            <span class="keyword">if</span>(dis[to]&gt;dis[u]+e[i].cost) &#123;</div><div class="line">                dis[to]=dis[u]+e[i].cost;</div><div class="line">                <span class="keyword">if</span>(!vis[to]) &#123;</div><div class="line">                    vis[to]=<span class="number">1</span>;</div><div class="line">                    <span class="keyword">if</span>(!q.empty() &amp;&amp; dis[to]&lt;dis[q.front()]) q.push_front(to);</div><div class="line">                    <span class="keyword">else</span> q.push_back(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>SLF + LLL优化:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s)</span> </span>&#123;</div><div class="line">    fill(dis,dis+n+<span class="number">1</span>,<span class="number">2147483647</span>);</div><div class="line">    <span class="built_in">deque</span> &lt;<span class="keyword">int</span>&gt; q;</div><div class="line">    <span class="keyword">int</span> tot=<span class="number">1</span>,sum=<span class="number">0</span>;</div><div class="line">    dis[s]=<span class="number">0</span>;</div><div class="line">    vis[s]=<span class="number">1</span>;</div><div class="line">    q.push_back(s);</div><div class="line">    <span class="keyword">while</span>(!q.empty()) &#123;</div><div class="line">        <span class="keyword">int</span> u=q.front();</div><div class="line">        q.pop_front();</div><div class="line">        <span class="keyword">if</span>(dis[u]*tot&gt;sum) &#123;</div><div class="line">            q.push_back(u);</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        tot--;</div><div class="line">        sum-=dis[u];</div><div class="line">        vis[u]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].nxt) &#123;</div><div class="line">            <span class="keyword">int</span> to=e[i].to;</div><div class="line">            <span class="keyword">if</span>(dis[to]&gt;dis[u]+e[i].cost) &#123;</div><div class="line">                dis[to]=dis[u]+e[i].cost;</div><div class="line">                <span class="keyword">if</span>(!vis[to]) &#123;</div><div class="line">                    vis[to]=<span class="number">1</span>;</div><div class="line">                    tot++;</div><div class="line">                    sum+=dis[to];</div><div class="line">                    <span class="keyword">if</span>(!q.empty() &amp;&amp; dis[to]&lt;dis[q.front()]) q.push_front(to);</div><div class="line">                    <span class="keyword">else</span> q.push_back(to);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="- 拓扑排序"></a>- 拓扑排序</h1><p><strong>如果存在一个排列a1,a2,…,an，使得在该图中不存在ai到aj的路径(i&gt;j)，我们称这个排列为这个图的拓扑序列。我们每次寻找入度为 0 的点加入序列中。并将当前点连接的所有边均删除，更新其它点的度数。由于每条边至多被删除一次。因此这个时间复杂度是 O(|E|) 的。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">topsort</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(du[i]==<span class="number">0</span>) q.push(i);</div><div class="line">	<span class="keyword">while</span>(!q.empty()) &#123;</div><div class="line">		now=q.front();</div><div class="line">		q.pop();</div><div class="line">		k++;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=p[now]; i!=<span class="number">-1</span>; i=e[i].next) &#123;</div><div class="line">			go=e[i].to;</div><div class="line">			du[go]--;</div><div class="line">			<span class="keyword">if</span>(du[go]==<span class="number">0</span>)</div><div class="line">				q.push(go);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(k==n) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="并查集"><a href="#并查集" class="headerlink" title="- 并查集"></a>- 并查集</h1><p><strong>字面意思，可供合并和查找的集合。常用于判断两个点是否联通。</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-8c01c51a462df0b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(fa[x]!=x) <span class="keyword">return</span> fa[x]=find(fa[x]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">	fa[find(x)]=fa[find(y)];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="二分图"><a href="#二分图" class="headerlink" title="- 二分图"></a>- 二分图</h1><p><strong>如果一个无向图G中V能分成两个点集A与B，且位于A中的顶点互相之间没有边，位于B中的顶点互相之间没有边，则称这个图为二分图。</strong></p>
+<ul>
+<li>##二分图染色（判断是否为二分图）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; v[N];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></div><div class="line">&#123;</div><div class="line">  col[x]=y;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;v[x].size(); i++)</div><div class="line">  &#123;</div><div class="line">     <span class="keyword">if</span> (!col[v[x][i]]) dfs(v[x][i],<span class="number">3</span>-y);</div><div class="line">     <span class="keyword">if</span> (col[v[x][i]]==col[x]) FLAG=<span class="literal">true</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">color</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=n; i++) col[i]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=n; i++) <span class="keyword">if</span> (!col[i]) dfs(i,<span class="number">1</span>);</div><div class="line">	<span class="keyword">if</span> (FLAG) <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>; <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>col[i]=1  i这个点染成黑色  col[i]=2  i这个点染成白色  col[i]=0  i这个点还未被染色</p>
+<ul>
+<li><h4 id="裂点"><a href="#裂点" class="headerlink" title="裂点"></a>裂点</h4><strong>首先明确：二分图不存在奇环。</strong></li>
+</ul>
+<p><strong>将每个点A裂成两个点A与A’。<br>若A与B之间存在边，则连一条A与B’的边，A’与B的边。<br>若此时A与A’连通，或者B与B’连通，则该图不是二分图。（若连通则必然出现了奇环）</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> f[k]==k?f[k]:f[k]=find(f[k]);</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=n; i++) p[i][<span class="number">0</span>]=++cnt,p[i][<span class="number">1</span>]=++cnt;</div><div class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=cnt; i++) f[i]=i;</div><div class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=m; i++) &#123;</div><div class="line">	<span class="comment">// u-v</span></div><div class="line">	f[find(p[u][<span class="number">0</span>])]=find(p[v][<span class="number">1</span>]);</div><div class="line">	f[find(p[u][<span class="number">1</span>])]=find(p[v][<span class="number">0</span>]);</div><div class="line">	<span class="keyword">if</span> (find(p[u][<span class="number">0</span>])==find(p[u][<span class="number">1</span>]) || find(p[v][<span class="number">0</span>])==find(p[v][<span class="number">1</span>])) FLAG=<span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (FLAG) <span class="built_in">puts</span>(<span class="string">"NO"</span>);</div><div class="line"><span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"YES"</span>);</div></pre></td></tr></table></figure></p>
+<ul>
+<li><h2 id="二分图最大匹配"><a href="#二分图最大匹配" class="headerlink" title="二分图最大匹配"></a>二分图最大匹配</h2></li>
+<li><h3 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h3><strong>顾名思义，在一个二分图中选择最多的边，使得没有任何一个点有连接它的两条边被选择到。</strong></li>
+</ul>
+<p>有四个男生，四个女生，每个男生都对几个女生有好感，我们的目标是满足尽量多的男生的要求。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-2ea1d0ed2ecfaa24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>先给1号男生找女生，找到了女1号。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-34c0ab6d258f946c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>给2号男生找女生，找到了女2号。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-2769e3665a4ca6f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>给3号男生找女生，找到女1号，先抢了试试。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-37adb9e9795865e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>1号男生没了女生，找下一个，找到女2号，抢了！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-8a39271334f6870f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>2号男生没了女生，找到了女3号！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-acdc4abe4fbc20a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>给4号男生找女生，发现无论如何也做不到不拆散别人的情况下给他分配一个女生了。</p>
+<p><strong>用递归实现上述过程。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> now)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> a=<span class="number">1</span>; a&lt;=m; a++)</div><div class="line">		<span class="keyword">if</span> (match[now][a] &amp;&amp; !use[a]) &#123;</div><div class="line">			use[a]=<span class="literal">true</span>;</div><div class="line">			<span class="keyword">if</span> (!result[a] || dfs(result[a])) &#123;</div><div class="line">				result[a]=now;</div><div class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">xiongyali</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> a=<span class="number">1</span>; a&lt;=n; a++) &#123;</div><div class="line">		<span class="built_in">memset</span>(use,<span class="literal">false</span>,<span class="keyword">sizeof</span>(use));</div><div class="line">		<span class="keyword">if</span> (dfs(a)) ans++;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>如果让你求一个答案答案一定在 ans , n - ans , m - ans , n + m - ans 之中。</strong></p>
+<hr>
+<h1 id="最小生成树"><a href="#最小生成树" class="headerlink" title="- 最小生成树"></a>- 最小生成树</h1><p><strong>一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的最少的边。</strong></p>
+<ul>
+<li>##Kruskal<br><strong>思想：贪心的去寻找最短的边，然后用并查集维护。</strong><br><strong>稀疏图Kruskal跑的飞快，时间复杂度大约O（nlogn）</strong><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">comp</span><span class="params">(E a,E b)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> a.v&lt;b.v;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(fa[x]!=x) <span class="keyword">return</span> fa[x]=find(fa[x]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">	fa[find(x)]=fa[find(y)];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Kruskal</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i;</div><div class="line">	sort(e+<span class="number">1</span>,e+<span class="number">1</span>+m,comp);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,k=<span class="number">0</span>;i&lt;=m;i++) &#123;</div><div class="line">		<span class="keyword">if</span>(find(e[i].x) != find(e[i].y)) &#123;</div><div class="line">			merge(e[i].x,e[i].y);</div><div class="line">			k++;</div><div class="line">			tot+=e[i].v;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(k == n<span class="number">-1</span>) &#123;</div><div class="line">			<span class="built_in">cout</span>&lt;&lt;tot;</div><div class="line">			<span class="keyword">return</span> ;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"orz"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="强连通分量"><a href="#强连通分量" class="headerlink" title="- 强连通分量"></a>- 强连通分量</h1><p><strong>简单来说强联通分量就是同一个图中能够互相联通的几个点。可以实现图的缩点。</strong></p>
+<ul>
+<li><h2 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h2><strong>思想：以DFS为基础，我们定义DFN[x]为搜索到x时的时间戳（即搜索到的时间）。LOW[x]为搜索树中x以及它的子孙可以访问到的最早祖先。有LOW[x]=min(DFN[x],DFN[j],LOW[k])，其中存在边(x,j)，(x,k)，j为x的祖先，k为x的子孙。令v[i]表示i是否已被搜索过以及是否找到了极大强连通分量。若i已经找到了极大强连通分量或者还未被搜索过，则v[i]=0，否则v[i]=1。</strong></li>
+</ul>
+<p><strong>①找到一个未被搜索过的节点u，若不存在，退出，否则以这个节点为根开始建立搜索树。</strong></p>
+<p><strong>②给该节点建立时间戳，将x压入栈中，枚举该节点的所有儿子x，若其儿子没被访问过，则搜索其儿子（重复②），之后更新LOW[u]=min(LOW[u],LOW[x])，否则若v[x]=1(表示x是u的祖先)，则更新LOW[u]=min(LOW[u],DFN[x])。</strong></p>
+<p><strong>③对u搜索完毕后，若LOW[u]=DFN[u]，则找到了一个极大强连通分量，栈顶到u都为一个极大强连通分量。更新v与栈。</strong></p>
+<ul>
+<li><h3 id="代码实现：-3"><a href="#代码实现：-3" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	DFN[x]=++Time;</div><div class="line">	LOW[x]=DFN[x];</div><div class="line">	st[++r]=x;</div><div class="line">	<span class="keyword">int</span> R=r;</div><div class="line">	V[x]=<span class="literal">true</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;v[x].size(); i++)</div><div class="line">		<span class="keyword">if</span> (v[x][i]!=fa[x]) &#123;</div><div class="line">			fa[v[x][i]]=x;</div><div class="line">			<span class="keyword">if</span> (!DFN[v[x][i]]) &#123;</div><div class="line">				dfs(v[x][i]);</div><div class="line">				LOW[x]=min(LOW[x],LOW[v[x][i]]);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (V[v[x][i]]) LOW[x]=min(LOW[x],DFN[v[x][i]]);</div><div class="line">		&#125;</div><div class="line">	<span class="keyword">if</span> (LOW[x]==DFN[x]) &#123;</div><div class="line">		cnt++;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=R; i&lt;=r; i++) &#123;</div><div class="line">			p[st[i]]=cnt;</div><div class="line">			V[st[i]]=<span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">		r=R<span class="number">-1</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>cnt 第cnt个极大强联通分量  p[i]  i所处的是哪个极大强联通分量<br>LOW[x]==DFN[x]  已出现一个极大强联通分量</strong><br>缩点：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;=m; i++)</div><div class="line">	<span class="keyword">if</span> (p[u[i]]!=p[v[i]])</div><div class="line">		merge(p[u[i]],p[v[i]]);</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="最近公共祖先（LCA）"><a href="#最近公共祖先（LCA）" class="headerlink" title="- 最近公共祖先（LCA）"></a>- 最近公共祖先（LCA）</h1><p><strong>Lowest Common Ancestors，对于有根树T的两个结点u、v，最近公共祖先LCA(T,u,v)表示一个结点x，满足x是u、v的祖先且x的深度尽可能大。</strong></p>
+<ul>
+<li><h2 id="离线算法-Tarjan"><a href="#离线算法-Tarjan" class="headerlink" title="离线算法 Tarjan"></a>离线算法 Tarjan</h2><del>没写过。</del><br><strong>在一次遍历中把所有询问一次性解决，时间复杂度是O(n+q)。</strong><h4 id="算法流程："><a href="#算法流程：" class="headerlink" title="算法流程："></a>算法流程：</h4><strong>1.任选一个点为根节点，从根节点开始。</strong></li>
+</ul>
+<p><strong>2.遍历该点u所有子节点v，并标记这些子节点v已被访问过。</strong></p>
+<p><strong>3.若是v还有子节点，返回2，否则下一步。</strong></p>
+<p><strong>4.合并v到u上。</strong></p>
+<p><strong>5.寻找与当前点u有询问关系的点v。</strong></p>
+<p><strong>6.若是v已经被访问过了，则可以确认u和v的最近公共祖先为v被合并到的父亲节点a。</strong></p>
+<p><strong>遍历的话需要用到dfs来遍历，至于合并，最优化的方式就是利用并查集来合并两个节点。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tree[x].size();++i) &#123;</div><div class="line">		tarjan(tree[x][i]);</div><div class="line">		merge(x,tree[x][i]);</div><div class="line">		anc[find(x)] = x;</div><div class="line">	&#125;</div><div class="line">	vis[x] = <span class="literal">true</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;query[x].size();++i) &#123;</div><div class="line">		<span class="keyword">if</span>(vis[query[x][i]])</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"the LCA for %d and %d is %d\n"</span>, x, query[x][i], anc[find(query[x][i])]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><h2 id="在线算法-倍增"><a href="#在线算法-倍增" class="headerlink" title="在线算法 倍增"></a>在线算法 倍增</h2><p><strong>找最近公共祖先这问题很容易想到让两节点一起往上走最后相遇，但这样的dfs显然很慢，于是就需要倍增。就是用二进制的思维，以1,2,4,8等2的阶层步长接近答案，比一步一步向上要快很多。<br>所以要dfs出来点的2^k的父亲节点与该节点的深度。<br>找lca时先将下面的点升到与另一点同一深度，再用往上倍增找lca。<br>有两种大同小异的方法：一种是以上一步2倍长的步伐向上试，不行再缩减，找到一个离lca能达到的最近点。另一种是先求出最大深度是2的几次方，再以当前最大步伐向上走。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(deep[x]&gt;deep[y]) swap(x,y);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">20</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">		<span class="keyword">if</span>(deep[fa[y][i]]&gt;=deep[x]) y=fa[y][i];   </div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(x==y)<span class="keyword">return</span> x;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">20</span>; i&gt;=<span class="number">0</span>; i--) &#123;</div><div class="line">		<span class="keyword">if</span>(fa[x][i]!=fa[y][i]) &#123;</div><div class="line">			x=fa[x][i],y=fa[y][i];   </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> fa[x][<span class="number">0</span>];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	deep[x]=deep[fa[x][<span class="number">0</span>]]+<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; fa[x][i]; i++)</div><div class="line">		fa[x][i+<span class="number">1</span>]=fa[fa[x][i]][i];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vec[x].size(); i++)</div><div class="line">		<span class="keyword">if</span>(!deep[vec[x][i]]) &#123;</div><div class="line">			fa[vec[x][i]][<span class="number">0</span>]=x;   </div><div class="line">			dfs(vec[x][i]);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h2 id="树剖"><a href="#树剖" class="headerlink" title="树剖"></a>树剖</h2><p><strong>size[x]为以x为结点的子树的结点的个数 每个结点和它的儿子之间只有一条重边，这个重边连向它的儿子中size最大的那个儿子。<br>如果结点u和它的儿子v之间是一条轻边，那么size[v]*2&lt;size[u]。<br>top[i]记录i结点所在链的链头，如果top[u]!=top[v]说明u v不在一条链上 将 u=fa[u]，重复上述操作；当它们在一条链上时，深度较小的那个点为他们的lca。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	size[x]=<span class="number">1</span>;</div><div class="line">	deep[x]=deep[fa[x]]+<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vec[x].size(); i++) &#123;</div><div class="line">		<span class="keyword">if</span>(fa[x]!=vec[x][i]) &#123;</div><div class="line">			fa[vec[x][i]]=x;</div><div class="line">			dfs(vec[x][i]);</div><div class="line">			size[x]+=size[vec[x][i]];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Get_heavy_edge</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> s=<span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>(!top[x]) top[x]=x;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vec[x].size(); i++) &#123;</div><div class="line">		<span class="keyword">if</span>(fa[x]!=vec[x][i]&amp;&amp;size[vec[x][i]]&gt;size[s])s=vec[x][i];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(s) &#123;</div><div class="line">		top[s]=top[x];</div><div class="line">		Get_heavy_edge(s);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vec[x].size(); i++) &#123;</div><div class="line">		<span class="keyword">if</span>(fa[x]!=vec[x][i]&amp;&amp;vec[x][i]!=s) Get_heavy_edge(vec[x][i]);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(; top[x]!=top[y];) &#123;</div><div class="line">		<span class="keyword">if</span>(deep[top[x]]&lt;deep[top[y]]) swap(x,y);</div><div class="line">		x=fa[top[x]];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(deep[x]&gt;deep[y]) swap(x,y);</div><div class="line">	<span class="keyword">return</span> x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NOIP-复习/" rel="tag"># NOIP 复习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/15/re/" rel="next" title="Re:从零开始的blog">
+                <i class="fa fa-chevron-left"></i> Re:从零开始的blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/20/datastructure/" rel="prev" title="神奇的数据结构">
+                神奇的数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yuki</p>
+              <p class="site-description motion-element" itemprop="description">I will follow this path until the end</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图的存储"><span class="nav-number">1.</span> <span class="nav-text">- 图的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#邻接矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">邻接矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#邻接表"><span class="nav-number">1.2.</span> <span class="nav-text">邻接表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边表（前向星）"><span class="nav-number">1.3.</span> <span class="nav-text">边表（前向星）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最短路问题"><span class="nav-number">2.</span> <span class="nav-text">- 最短路问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijkstra"><span class="nav-number">2.1.</span> <span class="nav-text">Dijkstra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法实现："><span class="nav-number">2.1.0.1.</span> <span class="nav-text">算法实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现："><span class="nav-number">2.1.0.2.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floyd"><span class="nav-number">2.2.</span> <span class="nav-text">Floyd</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法实现：-1"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">算法实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现：-1"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPFA"><span class="nav-number">2.3.</span> <span class="nav-text">SPFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法实现：-2"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">算法实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现：-2"><span class="nav-number">2.3.0.2.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拓扑排序"><span class="nav-number">3.</span> <span class="nav-text">- 拓扑排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并查集"><span class="nav-number">4.</span> <span class="nav-text">- 并查集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图"><span class="nav-number">5.</span> <span class="nav-text">- 二分图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#裂点"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">裂点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图最大匹配"><span class="nav-number">5.1.</span> <span class="nav-text">二分图最大匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匈牙利算法"><span class="nav-number">5.1.1.</span> <span class="nav-text">匈牙利算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小生成树"><span class="nav-number">6.</span> <span class="nav-text">- 最小生成树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#强连通分量"><span class="nav-number">7.</span> <span class="nav-text">- 强连通分量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tarjan"><span class="nav-number">7.1.</span> <span class="nav-text">Tarjan</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现：-3"><span class="nav-number">7.1.1.</span> <span class="nav-text">代码实现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最近公共祖先（LCA）"><span class="nav-number">8.</span> <span class="nav-text">- 最近公共祖先（LCA）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离线算法-Tarjan"><span class="nav-number">8.1.</span> <span class="nav-text">离线算法 Tarjan</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法流程："><span class="nav-number">8.1.0.1.</span> <span class="nav-text">算法流程：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线算法-倍增"><span class="nav-number">8.2.</span> <span class="nav-text">在线算法 倍增</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树剖"><span class="nav-number">8.3.</span> <span class="nav-text">树剖</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

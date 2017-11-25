@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="外出学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="常见的平衡树：
+Treap（比SBT慢，但比SBT好写）log( n )
+SBT（快，比较好写，功能不太全面）log( n )
+splay（特别慢，不太好写，功能最强大）理论log( n )实际$\sqrt{n}$
+*RBT（红黑树，比SBT还快，特别难写）log( n )splay必须会，Treap和SBT会一个。
+基本的平衡树一定是二叉树，保证左儿子每一个元素比当前节点小，右儿子每一个元素比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="听钟长者讲平衡树&网络流">
+<meta property="og:url" content="http://sukixj.github.io/2017/10/30/note1/index.html">
+<meta property="og:site_name" content="Yuki">
+<meta property="og:description" content="常见的平衡树：
+Treap（比SBT慢，但比SBT好写）log( n )
+SBT（快，比较好写，功能不太全面）log( n )
+splay（特别慢，不太好写，功能最强大）理论log( n )实际$\sqrt{n}$
+*RBT（红黑树，比SBT还快，特别难写）log( n )splay必须会，Treap和SBT会一个。
+基本的平衡树一定是二叉树，保证左儿子每一个元素比当前节点小，右儿子每一个元素比">
+<meta property="og:updated_time" content="2017-10-30T12:24:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="听钟长者讲平衡树&网络流">
+<meta name="twitter:description" content="常见的平衡树：
+Treap（比SBT慢，但比SBT好写）log( n )
+SBT（快，比较好写，功能不太全面）log( n )
+splay（特别慢，不太好写，功能最强大）理论log( n )实际$\sqrt{n}$
+*RBT（红黑树，比SBT还快，特别难写）log( n )splay必须会，Treap和SBT会一个。
+基本的平衡树一定是二叉树，保证左儿子每一个元素比当前节点小，右儿子每一个元素比">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sukixj.github.io/2017/10/30/note1/"/>
+
+
+
+
+
+  <title>听钟长者讲平衡树&网络流 | Yuki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's You</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/10/30/note1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">听钟长者讲平衡树&网络流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-30T20:10:12+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><h3 id="常见的平衡树："><a href="#常见的平衡树：" class="headerlink" title="常见的平衡树："></a>常见的平衡树：</h3></li>
+<li><strong>Treap（比SBT慢，但比SBT好写）log( n )</strong></li>
+<li><strong>SBT（快，比较好写，功能不太全面）log( n )</strong></li>
+<li><strong>splay（特别慢，不太好写，功能最强大）理论log( n )实际$\sqrt{n}$</strong></li>
+<li><strong>*RBT（红黑树，比SBT还快，特别难写）log( n )</strong><br><em>splay必须会，Treap和SBT会一个。</em></li>
+<li><h3 id="基本的平衡树"><a href="#基本的平衡树" class="headerlink" title="基本的平衡树"></a>基本的平衡树</h3>一定是二叉树，保证左儿子每一个元素比当前节点小，右儿子每一个元素比当前节点大。<br>插入一个数：，与当前节点（假设为 rt）比较，比 rt 小就往左边查反之往右边，没有儿子新建一个节点。这是最简单的插入，缺点会导致深度特别深 -&gt; 不平衡。用一些手段使它平衡。<br>询问：考虑三个区间，左儿子、自己、右儿子，和线段树类似。</li>
+<li><h3 id="Treap（-tree-heap）"><a href="#Treap（-tree-heap）" class="headerlink" title="Treap（= tree + heap）"></a>Treap（= tree + heap）</h3>每个节点存两个值：( key , value ) value就表示元素，前者满足堆的性质，后面满足平衡树的性质。插入时 key 值直接随机，这样可以保证深度log( n )。 </li>
+<li><h4 id="两个核心操作："><a href="#两个核心操作：" class="headerlink" title="两个核心操作："></a>两个核心操作：</h4></li>
+<li><strong>merge（p1，p2）：返回一棵树的根，以p1为根的Treap和以p2为根的Treap合并为一棵p3为根的Treap，需要保证p1中的所有元素小于等于p2中的所有元素。</strong></li>
+<li><strong>split（p，k）：返回两棵树的根，把以p为根的t前k小的数拿出来组成一棵新的treap，剩下的组成一棵Treap，一棵Treap -&gt; 两棵Treap。</strong><br>插入x：先找有几个数比x小 -&gt; split（p，n），建一个有一个点（x）的Treap，先merge（分出来的第一棵树，x） -&gt; merge（刚才merge的树，分出的另一棵树）<br>删除x：先split（前 x） -&gt; split（x 和剩下的数）-&gt;丢掉 x -&gt;merge（剩余的两棵树）。</li>
+<li><h4 id="实际操作："><a href="#实际操作：" class="headerlink" title="实际操作："></a>实际操作：</h4></li>
+<li><p><strong>merge( p1 , p2 )：</strong><br>p1( value , key , l , r ) ，p1( value , key , l , r )<br>root 为 key 最大的节点（要么是 p1，要么是 p2）<br><strong>1）p1.key &gt;= p2.key -&gt; p1作为根 -&gt; p1 的左儿子不会发生变化（p1.l）（满足性质所有p1 &lt;= p2）-&gt; 右儿子merge（p1.r , p2）。</strong><br><strong>2）p1.key &lt; p2.key -&gt; p2 作为根 -&gt; 左儿子 merge（p1 , p2.l）-&gt; 右儿子 p2.r。</strong><br>递归实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> p1,<span class="keyword">int</span> p2)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(!p1) <span class="keyword">return</span> p2;</div><div class="line">	<span class="keyword">if</span>(!p2) <span class="keyword">return</span> p1;</div><div class="line">	<span class="keyword">if</span>(z[p1].key&lt;z[p2].key) &#123;</div><div class="line">		z[p1].r=merge(z[p1].r,p2);</div><div class="line">		<span class="keyword">return</span> p1;</div><div class="line">	&#125; </div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		z[p2].l=merge(p1,z[p2].l);</div><div class="line">		<span class="keyword">return</span> p2;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>split（p , k）：</strong><br>p1( value , key , l , r , size )<br><strong>1）k &lt;= p.l.size（全部都在左子树里） -&gt; split( p.l , k ) -&gt; 返回 p1 和以 p 为根以 p2 为左子树以 p.r 为右子树的树。<br>2）k = p.l.size+1 （加上根节点） -&gt; 返回根加左子树和右子树。<br>3）k &gt; p.l.size+1 -&gt; split（p.r , k-p.l.size-1）-&gt; 返回以 p 为根以 p.l 和 p1 为左右子树的树和 p2 。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; split(<span class="keyword">int</span> p,<span class="keyword">int</span> k) &#123;</div><div class="line">	<span class="keyword">if</span>(z[z[p].l].size&gt;=k) &#123;</div><div class="line">		<span class="keyword">if</span>(!z[p].l) <span class="keyword">return</span> make_pair(<span class="number">0</span>,p);</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; px=split(z[p].l,k);</div><div class="line">			<span class="keyword">int</span> pl=px.first;</div><div class="line">			z[p].l=px.second;</div><div class="line">			<span class="keyword">return</span> make_pair(pl,p);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">if</span>(z[p].r==<span class="number">0</span>) <span class="keyword">return</span> make_pair(p,<span class="number">0</span>);</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; px=split(z[p].r,k-z[z[p].l].size<span class="number">-1</span>);</div><div class="line">			z[p].r=px.first;</div><div class="line">			<span class="keyword">int</span> pr=px.second;</div><div class="line">			<span class="keyword">return</span> make_pair(p,pr);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>确定比x小的树有多少个：比当前节点小往左走，否则说明左子树的所有元素都比x小，就把答案加上左子树的元素个数然后往右走。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">query_min</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(p)</div><div class="line">		<span class="keyword">if</span>(z[p].v&gt;=v) p=z[p].l;</div><div class="line">		<span class="keyword">else</span> ans+=z[z[p].l].size+<span class="number">1</span>,p=z[p].r;</div><div class="line">	<span class="keyword">return</span> ans;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li><h2 id="网络流（Dinic算法）"><a href="#网络流（Dinic算法）" class="headerlink" title="网络流（Dinic算法）"></a>网络流（Dinic算法）</h2>给你一张有向图，源点和汇点，源点有无限多的水，每条边简化成一根水管，每根水管都有流量，求最多有多少水能从源点流到汇点。</li>
+<li>暴力：随便从起点到终点找一条路，可行流量就是路径上所有容积的最小值。dfs</li>
+<li>Dinic：建图时建两条边，令反向边的流量是0。不断执行BFS然后DFS的过程，从起点开始BFS，BFS时候只会走那些流量不是0的边（不能流回来），理论上来说沿着这些边流下去流量就会增加了。<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="built_in">memset</span>(depth,<span class="number">-1</span>,<span class="keyword">sizeof</span>(depth));</div><div class="line">	depth[s]=<span class="number">1</span>;</div><div class="line">	que.push(s);</div><div class="line">	<span class="keyword">while</span> (que.size()) &#123;</div><div class="line">		<span class="keyword">int</span> now=que.front();</div><div class="line">		que.pop();</div><div class="line">		<span class="keyword">for</span> (edge *e=v[now];e;e=e-&gt;next)</div><div class="line">			<span class="keyword">if</span> (depth[e-&gt;e]==<span class="number">-1</span> &amp;&amp; e-&gt;f) &#123;</div><div class="line">				depth[e-&gt;e]=depth[now]+<span class="number">1</span>;</div><div class="line">				que.push(e-&gt;e);</div><div class="line">			&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> depth[e]!=<span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>如果我们BFS找到一条路可以流水，那么Dinic就再使用DFS让它流水。<br>用BFS分层，DFS每一层的流量往下流，可以防止出现环流。<br>反向边：可以把水推回去多少，防止出现堵塞的情况，出现最优解。</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> now,<span class="keyword">int</span> cur_flow)</span> </span>&#123; <span class="comment">//now 当前水流到哪里，cur_flow有多少水流到这里 </span></div><div class="line">	<span class="keyword">if</span> (now==e) <span class="keyword">return</span> cur_flow; <span class="comment">//水都流到汇点 </span></div><div class="line">	<span class="keyword">int</span> rest=cur_flow; <span class="comment">//流出去之后还有多少水 </span></div><div class="line">	<span class="keyword">for</span> (edge *e=v[now]; e; e=e-&gt;next)</div><div class="line">		<span class="keyword">if</span> (e-&gt;f &amp;&amp; depth[e-&gt;e]==depth[now]+<span class="number">1</span> &amp;&amp; rest) &#123; </div><div class="line">		<span class="comment">//能流的水不等于零 留到下个节点的深度恰好是当前节点+1（去除环流） 水还有剩  </span></div><div class="line">			<span class="keyword">int</span> new_flow=dfs(e-&gt;e,min(rest,e-&gt;f)); <span class="comment">//当前水管能流出去多少水 </span></div><div class="line">			e-&gt;f-=new_flow;<span class="comment">//水管容量 </span></div><div class="line">			e-&gt;op-&gt;f+=new_flow;<span class="comment">//反向边能流的流量加上流出去的水 </span></div><div class="line">			rest-=new_flow;<span class="comment">//剩下流量 </span></div><div class="line">		&#125;</div><div class="line">	<span class="keyword">return</span> cur_flow-rest;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么我们Dinic就可以这么写了<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dinic</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span> (bfs())</div><div class="line">		ans+=dfs(s,INF);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>zhx说如果考网络流的题，直接随便跑个网络流如果能和答案匹配上就行了。。<br><del><strong>Dinic复杂度玄学</strong></del><br>二分图匹配是可以拿网络流跑的，<strong>左边建一个源点指向所有左边的点，流量为1，把所有的边定向从左往右，流量为1，建一个汇点所有右边的点指向汇点，流量为1，这样跑出来的最大流量就是最大匹配数。最大权值匹配就直接用网络流。</strong><del>管他对不对先跑了再说。</del><strong>答案要不就是跑出来的答案，要不就是所有的权值减去跑出来的答案。</strong></p>
+<p>end.</p>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/外出学习/" rel="tag"># 外出学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/29/qbkqccd2/" rel="next" title="清北考前冲刺Day2">
+                <i class="fa fa-chevron-left"></i> 清北考前冲刺Day2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/30/qbkqccd3/" rel="prev" title="清北考前冲刺Day3">
+                清北考前冲刺Day3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yuki</p>
+              <p class="site-description motion-element" itemprop="description">I will follow this path until the end</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的平衡树："><span class="nav-number">1.</span> <span class="nav-text">常见的平衡树：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的平衡树"><span class="nav-number">2.</span> <span class="nav-text">基本的平衡树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Treap（-tree-heap）"><span class="nav-number">3.</span> <span class="nav-text">Treap（= tree + heap）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个核心操作："><span class="nav-number">3.1.</span> <span class="nav-text">两个核心操作：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际操作："><span class="nav-number">3.2.</span> <span class="nav-text">实际操作：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流（Dinic算法）"><span class="nav-number"></span> <span class="nav-text">网络流（Dinic算法）</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

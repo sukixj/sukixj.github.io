@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NOIP 复习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件输入输出
+long long -&amp;gt; %lld ( %I64d会被自动识别成%d )
+unsigned long long -&amp;gt; %llu
+头文件要写全
+文件名及后缀必须使用小写
+代码限制100KB（打表）
+使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称
+不要使用#include 头文件，会引入许多可能与自己命名产生冲突的函数和变量。
+Lin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI Linux 评测注意事项">
+<meta property="og:url" content="http://sukixj.github.io/2017/11/01/note2/index.html">
+<meta property="og:site_name" content="Yuki">
+<meta property="og:description" content="文件输入输出
+long long -&amp;gt; %lld ( %I64d会被自动识别成%d )
+unsigned long long -&amp;gt; %llu
+头文件要写全
+文件名及后缀必须使用小写
+代码限制100KB（打表）
+使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称
+不要使用#include 头文件，会引入许多可能与自己命名产生冲突的函数和变量。
+Lin">
+<meta property="og:updated_time" content="2017-11-02T09:46:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOI Linux 评测注意事项">
+<meta name="twitter:description" content="文件输入输出
+long long -&amp;gt; %lld ( %I64d会被自动识别成%d )
+unsigned long long -&amp;gt; %llu
+头文件要写全
+文件名及后缀必须使用小写
+代码限制100KB（打表）
+使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称
+不要使用#include 头文件，会引入许多可能与自己命名产生冲突的函数和变量。
+Lin">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sukixj.github.io/2017/11/01/note2/"/>
+
+
+
+
+
+  <title>NOI Linux 评测注意事项 | Yuki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's You</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/11/01/note2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NOI Linux 评测注意事项</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T19:45:09+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><h3 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h3></li>
+<li><h3 id="long-long-gt-lld-I64d会被自动识别成-d"><a href="#long-long-gt-lld-I64d会被自动识别成-d" class="headerlink" title="long long -&gt; %lld ( %I64d会被自动识别成%d )"></a>long long -&gt; %lld ( %I64d会被自动识别成%d )</h3></li>
+<li><h3 id="unsigned-long-long-gt-llu"><a href="#unsigned-long-long-gt-llu" class="headerlink" title="unsigned long long -&gt; %llu"></a>unsigned long long -&gt; %llu</h3></li>
+<li><h3 id="头文件要写全"><a href="#头文件要写全" class="headerlink" title="头文件要写全"></a>头文件要写全</h3></li>
+<li><h3 id="文件名及后缀必须使用小写"><a href="#文件名及后缀必须使用小写" class="headerlink" title="文件名及后缀必须使用小写"></a>文件名及后缀必须使用小写</h3></li>
+<li><h3 id="代码限制100KB（打表）"><a href="#代码限制100KB（打表）" class="headerlink" title="代码限制100KB（打表）"></a>代码限制100KB（<del>打表</del>）</h3></li>
+<li><h3 id="使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称"><a href="#使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称" class="headerlink" title="使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称"></a>使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称</h3></li>
+<li><h3 id="不要使用-include-头文件，会引入许多可能与自己命名产生冲突的函数和变量。"><a href="#不要使用-include-头文件，会引入许多可能与自己命名产生冲突的函数和变量。" class="headerlink" title="不要使用#include 头文件，会引入许多可能与自己命名产生冲突的函数和变量。"></a>不要使用#include <bits stdc++.h="">头文件，会引入许多可能与自己命名产生冲突的函数和变量。</bits></h3></li>
+<li><h3 id="Linux系统下rand-函数与Windows不同-gt-rand-lt-lt-15-rand"><a href="#Linux系统下rand-函数与Windows不同-gt-rand-lt-lt-15-rand" class="headerlink" title="Linux系统下rand()函数与Windows不同 -&gt; (rand()&lt;&lt;15)^rand()"></a>Linux系统下rand()函数与Windows不同 -&gt; (rand()&lt;&lt;15)^rand()</h3></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NOIP-复习/" rel="tag"># NOIP 复习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/31/qbkqccd4/" rel="next" title="清北考前冲刺Day4">
+                <i class="fa fa-chevron-left"></i> 清北考前冲刺Day4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/01/qbkqccd5/" rel="prev" title="清北考前冲刺Day5">
+                清北考前冲刺Day5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yuki</p>
+              <p class="site-description motion-element" itemprop="description">I will follow this path until the end</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件输入输出"><span class="nav-number">1.</span> <span class="nav-text">文件输入输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-long-gt-lld-I64d会被自动识别成-d"><span class="nav-number">2.</span> <span class="nav-text">long long -> %lld ( %I64d会被自动识别成%d )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unsigned-long-long-gt-llu"><span class="nav-number">3.</span> <span class="nav-text">unsigned long long -> %llu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头文件要写全"><span class="nav-number">4.</span> <span class="nav-text">头文件要写全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件名及后缀必须使用小写"><span class="nav-number">5.</span> <span class="nav-text">文件名及后缀必须使用小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码限制100KB（打表）"><span class="nav-number">6.</span> <span class="nav-text">代码限制100KB（打表）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称"><span class="nav-number">7.</span> <span class="nav-text">使用的函数和变量名不要和Linux中的内置函数和变量名冲突，如pipe、fork等名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要使用-include-头文件，会引入许多可能与自己命名产生冲突的函数和变量。"><span class="nav-number">8.</span> <span class="nav-text">不要使用#include 头文件，会引入许多可能与自己命名产生冲突的函数和变量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统下rand-函数与Windows不同-gt-rand-lt-lt-15-rand"><span class="nav-number">9.</span> <span class="nav-text">Linux系统下rand()函数与Windows不同 -> (rand()<<15)^rand()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

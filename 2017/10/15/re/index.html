@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hello World," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="花了一上午的时间，终于弄明白了怎么用hexo搭建博客，现在记录下来，以供以后参考。
+一、注册github账号1、官网注册
+上面三栏分别填入用户名，邮箱和密码。（这三个东西对于后面的使用是非常重要的，最好能记住）。
+2、创建仓库现在我们登陆github，单击头像右边的加号，点击repository。
+然后在repository name中输入github用户名.github.io ，点击create">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Re:从零开始的blog">
+<meta property="og:url" content="http://sukixj.github.io/2017/10/15/re/index.html">
+<meta property="og:site_name" content="Yuki">
+<meta property="og:description" content="花了一上午的时间，终于弄明白了怎么用hexo搭建博客，现在记录下来，以供以后参考。
+一、注册github账号1、官网注册
+上面三栏分别填入用户名，邮箱和密码。（这三个东西对于后面的使用是非常重要的，最好能记住）。
+2、创建仓库现在我们登陆github，单击头像右边的加号，点击repository。
+然后在repository name中输入github用户名.github.io ，点击create">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-c3b54273bedd00ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-6e85ce553d081233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-4ea09f21ac90cc61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-fc1a4290098f3f17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-be8a6be8413c74a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-4374634b8dadadb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-29cd98ef169ae52a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-1a7865a5f83624cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-114d79f9d972b005.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-b43ca9e2d8cb7e39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-138efa6b4f1ad802.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-23T08:50:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Re:从零开始的blog">
+<meta name="twitter:description" content="花了一上午的时间，终于弄明白了怎么用hexo搭建博客，现在记录下来，以供以后参考。
+一、注册github账号1、官网注册
+上面三栏分别填入用户名，邮箱和密码。（这三个东西对于后面的使用是非常重要的，最好能记住）。
+2、创建仓库现在我们登陆github，单击头像右边的加号，点击repository。
+然后在repository name中输入github用户名.github.io ，点击create">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8471136-c3b54273bedd00ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sukixj.github.io/2017/10/15/re/"/>
+
+
+
+
+
+  <title>Re:从零开始的blog | Yuki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's You</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/10/15/re/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Re:从零开始的blog</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-15T13:27:02+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>花了一上午的时间，终于弄明白了怎么用hexo搭建博客，现在记录下来，以供以后参考。</p>
+<h2 id="一、注册github账号"><a href="#一、注册github账号" class="headerlink" title="一、注册github账号"></a>一、注册github账号</h2><h3 id="1、官网注册"><a href="#1、官网注册" class="headerlink" title="1、官网注册"></a>1、<a href="https://github.com/" target="_blank" rel="external">官网</a>注册</h3><p><img src="http://upload-images.jianshu.io/upload_images/8471136-c3b54273bedd00ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p><strong>上面三栏分别填入用户名，邮箱和密码。（这三个东西对于后面的使用是非常重要的，最好能记住）。</strong></p>
+<h3 id="2、创建仓库"><a href="#2、创建仓库" class="headerlink" title="2、创建仓库"></a>2、创建仓库</h3><p>现在我们登陆github，单击头像右边的加号，点击repository。<br><img src="http://upload-images.jianshu.io/upload_images/8471136-6e85ce553d081233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>然后在repository name中输入<code>github用户名.github.io</code> ，点击<code>create repository</code>。<br><del>因为我已经创造好了所以他是红的，第一次弄的应该是原谅色的</del></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-4ea09f21ac90cc61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>之后我们先把github一放，来看看下一步。</p>
+<h2 id="二、安装所需环境"><a href="#二、安装所需环境" class="headerlink" title="二、安装所需环境"></a>二、安装所需环境</h2><p>我们需要两个东西，一个是<strong>node.js</strong>，另一个是<strong>git</strong>。 <del>请自行百度搜索下载</del> 下载完成安装时一路next就好了。</p>
+<p>我们之后的大部分工作都是在我们安装的<strong>git</strong>中的<strong>git bash</strong>进行的（我们把它称之为<strong>终端（Terminal）</strong>）。</p>
+<p>那我们现在就来使用一下这个<strong>终端</strong>：</p>
+<h3 id="1、生成添加秘钥"><a href="#1、生成添加秘钥" class="headerlink" title="1、生成添加秘钥"></a>1、生成添加秘钥</h3><p>在终端输入 <code>$ ssh-keygen -t rsa -C &quot;Github的注册邮箱地址&quot;</code> （注意：<strong>有引号</strong>） 然后他会让你输入一些东西，我们不用管他，直接一直enter，待秘钥生成完毕，会得到两个文件<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>，他会提示文件所在的目录，用带格式的记事本打开<strong>id_rsa.pub</strong>，ctrl + a ctrl + c复制里面的所有内容，带着他们再回到我们的github，再单击你的头像，点击下面的<strong>settings</strong><br><img src="http://upload-images.jianshu.io/upload_images/8471136-fc1a4290098f3f17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br>左边找到<strong>SSH and GPG keys</strong>，再点击<strong>New SSH key</strong><br><img src="http://upload-images.jianshu.io/upload_images/8471136-be8a6be8413c74a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br>Title随便填，下面的<strong>Key</strong>就直接ctrl + v 把我们复制的东西统统粘贴进去，再点击<strong>Add SSH key</strong>就完成了。</p>
+<p><strong>git bash</strong>中输入命令<code>$ssh -T git@github.com</code>，选yes，等待片刻可看到成功提示。</p>
+<h3 id="2、安装hexo"><a href="#2、安装hexo" class="headerlink" title="2、安装hexo"></a>2、安装hexo</h3><p>接下来我们所有的操作都在终端进行。</p>
+<ul>
+<li><p><strong>新建一个你自己的hexo文件夹</strong><br>文件夹我们就按照常规的方法新建就好了，建好后在终端上输入<br><code>$ cd 文件夹的路径</code><br>注意：<strong>这里的文件夹的路径是不加引号的</strong><br>这样我们就在git上成功定位了它工作的位置。<br><strong>强调</strong>：强烈建议<strong>不要</strong>选择需要管理员权限才能创建文件（夹）的文件夹。</p>
+</li>
+<li><p><strong>在此文件夹下安装hexo</strong><br><code>$ npm install -g hexo-cli</code><br>或者<br><code>$ npm install -g hexo</code><br>运行完这条语句再在终端输入<br><code>$ hexo</code></p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-4374634b8dadadb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br>如果显示为这样就说明已经安装好了。</p>
+<ul>
+<li><p><strong>初始化博客</strong><br><code>$ hexo init folder</code><br>folder为文件夹的路径<br><code>$ cd folder</code><br>进入博客文件夹，<folder>为文件夹的路径<br><code>$ npm install</code><br>node.js的命令，根据博客既定的dependencies配置安装所有的依赖包</folder></p>
+<p>初始化博客后 我们的文件夹中的文件是这样的：</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/8471136-29cd98ef169ae52a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<ul>
+<li>配置个人信息<br>基于上一步，我们对博客修改相应的配置，我们用到<strong>_config.yml</strong>文件，用记事本打开，我们会看到一大堆东西，但我们只需要修改其中的一部分就好了：</li>
+</ul>
+<p><strong>1. 修改网站相关信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">title: # The title of your website  # 网站标题</div><div class="line">subtitle: # The subtitle of your website  # 子标题</div><div class="line">description: # The description of your website  # 网站的描述</div><div class="line">author: # Your name  # 你的名字</div><div class="line">language: zh-CN  # 中文</div><div class="line">timezone: Asia/Shanghai  # 上海时间</div></pre></td></tr></table></figure></p>
+<p><strong>language</strong>和<strong>timezone</strong>都是有输入规范的，详细可参考<a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank" rel="external">语言规范</a>和<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="external">时区规范</a>。<br><strong>注意</strong>：每一项的填写，其后面都要保留一个空格，下同。</p>
+<p><strong>2. 配置统一资源定位符（个人域名）</strong><br><code>url: http://yourwebsite.com</code></p>
+<p>对于root（根目录）、permalink（永久链接）、permalink_defaults（默认永久链接）等其他信息保持默认。</p>
+<p><strong>3. 配置部署（个人感觉最重要）</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git </div><div class="line">  repo: https://github.com/sukixj/sukixj.github.io.git </div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<p>其中<strong>repo</strong>可以在github中你创造的仓库中找到<br><img src="http://upload-images.jianshu.io/upload_images/8471136-1a7865a5f83624cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br><strong>branch</strong>是项目的分支，我们默认用主分支<strong>master</strong>。<br>执行<code>$npm install hexo-deployer-git --save</code><br>你需要为自己配置身份信息，打开命令行，然后输入：<br><code>$git config --global user.name &quot;your github name&quot;</code><br><code>$git config --global user.email &quot;your github email&quot;</code></p>
+<ul>
+<li>至此我们的所有配置都搞完了</li>
+</ul>
+<p><strong>ps：如有卡住的地方可以ctrl + c 强制退出，或者有不能继续的情况可以重新<code>$ hexo init 文件夹</code>或者<code>$ hexo clear</code>清除缓存。</strong></p>
+<hr>
+<h2 id="发表文章"><a href="#发表文章" class="headerlink" title="发表文章"></a>发表文章</h2><p><strong>支持文章格式为markdown（.md）</strong></p>
+<p>在终端执行<br><code>$hexo n &quot;文章标题&quot; 或 $hexo new &quot;文章标题&quot;</code></p>
+<p>我们可以在本地博客文件夹source-&gt;_post文件夹下看到我们新建的markdown文件，用Markdown编辑器打开文件并编辑保存。我们就可以进行本地生成博客，执行<br><code>$hexo g 或 $hexo generate</code><br>然后执行<br><code>$hexo s 或 $hexo server</code><br>就可以在浏览器进入 localhost:4000 进行本地预览</p>
+<p>但是毕竟我们目前发布的只有本机看得到，怎么让其他人看到我们写的博客呢？这时候我们来看看博客的部署。</p>
+<p>我们只要在生成后终端执行这样的命令即可：<br><code>$hexo d 或 hexo deploy</code><br>或者可以直接<br><code>$hexo g -d</code><br>输入你的github用户名和密码，（密码默认不显示），然后就好啦~</p>
+<hr>
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>作为自己搭建的blog，怎么能没有一款逼格++的主题呢？<br>hexo有着各种各样的主题，均可以在<strong>github</strong>下载。<br>比如我们看上一款主题<strong><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next</a></strong>，我们就在终端<code>cd 工作目录/themes</code>，定位到主题文件夹，再执行<br><code>$git clone https://github.com/iissnan/hexo-theme-next.git</code><br>git bash就会自动为我们下载好这款主题（其他主题同理）</p>
+<p>下载完成之后我们找到主文件夹下的<strong>_config.yml</strong>，用记事本打开它，然后找到<strong>theme</strong>，把冒号后面的主题名称相应的换成我们下载的主题名称（主题名称即我们下载完主题后文件夹的名称），保存。<br><img src="http://upload-images.jianshu.io/upload_images/8471136-114d79f9d972b005.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><strong>（此处主题应为Next）</strong></p>
+<p>在更换主题这方面还有一点注意需要说：因为有的主题设置为<strong>UTF-8编码</strong>，所以我们需要根据主题来相应的更改主文件夹下的<strong>_config.yml</strong>的编码和我们需要发布的文章文件的编码（<a href="http://jingyan.baidu.com/article/9158e0006cc0dea255122876.html" target="_blank" rel="external">如何更改文件编码？</a>）（默认为ANSI），如不更改，可能会出现博客内中文乱码现象 （<del>调了半天才知道为什么</del>）。</p>
+<p>保存后我们在终端执行<code>$hexo g -d</code>就好啦~~</p>
+<p>可能你会不满足于主题自带的背景图片或者其他，在每个github下载页面下方都有README说明，我们可以根据它来自定义自己喜欢的元素。</p>
+<hr>
+<h2 id="域名绑定"><a href="#域名绑定" class="headerlink" title="域名绑定"></a>域名绑定</h2><h3 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h3><p>　　一个高逼格的博客怎么能够少了域名呢ovo。域名提供商有很多，像godaddy、万网等。如果是学生党的话推荐使用<strong>腾讯云</strong>“<a href="https://www.qcloud.com/act/campus" target="_blank" rel="external">1元云主机+域名</a>”计划。</p>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p>这里以在腾讯云购买的域名为例。</p>
+<ol>
+<li>进入腾讯云后台域名管理，点击解析域名</li>
+<li>添加DNS记录： <img src="http://upload-images.jianshu.io/upload_images/8471136-b43ca9e2d8cb7e39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> <img src="http://upload-images.jianshu.io/upload_images/8471136-138efa6b4f1ad802.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""> 【注：腾讯云中DNS记录生效需要十分钟，请耐心等待】 <ol>
+<li>在博客根目录里的source目录中新建CNAME文本文件（不带任何后缀！！！），然后用Notepad++编辑CNAME文件，写入你的域名，保存退出 </li>
+<li>重新部署一下博客（hexo clean、hexo d -g）</li>
+</ol>
+</li>
+<li>试试能不能通过域名访问到你的博客。</li>
+</ol>
+<hr>
+<p>这样，我们最基础的博客就搭建完了，其实hexo还有很多扩展，<del>只是我还不会</del>，也有很多黑科技，<del>也不会</del>，这就需要我们问<strong><a href="https://www.baidu.com" target="_blank" rel="external">度娘</a></strong>了。</p>
+<p>wordpress 使用php，权限更高，能搞更多东西出来。而且写东西方便，任意一台电脑、手机都可以写博客。<br>hexo相对更简洁点，不需要买服务器，很容易弄明白每个文件是干什么的，可以魔改出自己的hexo，通过各种方法实现自己的要求。需要有一定的git基础。不过使用比较折腾，需要node.js git 才能写博客，<del>虽然可以制作便携版放U盘</del>，不过还是比较麻烦不过我现在还是在用hexo，多折腾才能更多踩坑，才能提高 <del>（虽然都是在瞎搞）</del></p>
+<p>END</p>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hello-World/" rel="tag"># Hello World</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/graph/" rel="prev" title="有趣的图论">
+                有趣的图论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yuki</p>
+              <p class="site-description motion-element" itemprop="description">I will follow this path until the end</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、注册github账号"><span class="nav-number">1.</span> <span class="nav-text">一、注册github账号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、官网注册"><span class="nav-number">1.1.</span> <span class="nav-text">1、官网注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、创建仓库"><span class="nav-number">1.2.</span> <span class="nav-text">2、创建仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装所需环境"><span class="nav-number">2.</span> <span class="nav-text">二、安装所需环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、生成添加秘钥"><span class="nav-number">2.1.</span> <span class="nav-text">1、生成添加秘钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、安装hexo"><span class="nav-number">2.2.</span> <span class="nav-text">2、安装hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发表文章"><span class="nav-number">3.</span> <span class="nav-text">发表文章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更换主题"><span class="nav-number">3.1.</span> <span class="nav-text">更换主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名绑定"><span class="nav-number">4.</span> <span class="nav-text">域名绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#购买域名"><span class="nav-number">4.1.</span> <span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定域名"><span class="nav-number">4.2.</span> <span class="nav-text">绑定域名</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
