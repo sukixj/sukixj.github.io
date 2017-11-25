@@ -79,16 +79,11 @@
 
 
 
-<meta name="description" content="- 图的存储
-邻接矩阵map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n2），时间复杂度O（n2）
-1234567891011void Adjacency matrix() &amp;#123;	for(int i=1;i&amp;lt;=m;i++) &amp;#123;		int u,v,c;		scanf(&quot;%d%d%d&quot;,&amp;amp;u,&amp;amp;v,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有趣的图论">
 <meta property="og:url" content="http://sukixj.github.io/2017/10/19/graph/index.html">
 <meta property="og:site_name" content="Yuki">
-<meta property="og:description" content="- 图的存储
-邻接矩阵map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n2），时间复杂度O（n2）
-1234567891011void Adjacency matrix() &amp;#123;	for(int i=1;i&amp;lt;=m;i++) &amp;#123;		int u,v,c;		scanf(&quot;%d%d%d&quot;,&amp;amp;u,&amp;amp;v,">
+<meta property="og:image" content="https://i.loli.net/2017/11/25/5a192bbde64aa.png">
 <meta property="og:image" content="https://i.loli.net/2017/10/18/59e73e7036d19.gif">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-8c01c51a462df0b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-2ea1d0ed2ecfaa24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -97,13 +92,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-37adb9e9795865e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-8a39271334f6870f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8471136-acdc4abe4fbc20a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-10-29T13:01:46.000Z">
+<meta property="og:updated_time" content="2017-11-25T08:50:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="有趣的图论">
-<meta name="twitter:description" content="- 图的存储
-邻接矩阵map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n2），时间复杂度O（n2）
-1234567891011void Adjacency matrix() &amp;#123;	for(int i=1;i&amp;lt;=m;i++) &amp;#123;		int u,v,c;		scanf(&quot;%d%d%d&quot;,&amp;amp;u,&amp;amp;v,">
-<meta name="twitter:image" content="https://i.loli.net/2017/10/18/59e73e7036d19.gif">
+<meta name="twitter:image" content="https://i.loli.net/2017/11/25/5a192bbde64aa.png">
 
 
 
@@ -233,6 +225,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友情链接
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -333,7 +335,9 @@
       
 
       
-        <h1 id="图的存储"><a href="#图的存储" class="headerlink" title="- 图的存储"></a>- 图的存储</h1><ul>
+        <p><img src="https://i.loli.net/2017/11/25/5a192bbde64aa.png" alt="57793944_p0.png"></p>
+<a id="more"></a>
+<h1 id="图的存储"><a href="#图的存储" class="headerlink" title="- 图的存储"></a>- 图的存储</h1><ul>
 <li><h2 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h2><p><strong>map[i][j] 表示第 i 个点与第 j 个点连有一条边，如有权值就把矩阵内元素的值赋成权值。空间复杂度O（n<sup>2</sup>），时间复杂度O（n<sup>2</sup>）</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> Adjacency <span class="title">matrix</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">		<span class="keyword">int</span> u,v,c;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;c);</div><div class="line">		<span class="built_in">map</span>[u][v]=c;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -574,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -587,7 +591,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -652,7 +656,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -660,7 +664,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+  <div class="theme-info">Theme by &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
 
 
 
