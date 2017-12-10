@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NOIP 复习," />
+  <meta name="keywords" content="高级数据结构,省选,可并堆," />
 
 
 
@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="数学真有趣">
+<meta name="description" content="顾名思义，左偏树是一种支持合并的二叉堆。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无聊的数学">
-<meta property="og:url" content="http://sukixj.github.io/2017/10/22/math/index.html">
+<meta property="og:title" content="左偏树（可并堆）">
+<meta property="og:url" content="http://sukixj.github.io/2017/12/10/zuopianshu/index.html">
 <meta property="og:site_name" content="Yuki">
-<meta property="og:description" content="数学真有趣">
-<meta property="og:updated_time" content="2017-11-25T08:47:20.000Z">
+<meta property="og:description" content="顾名思义，左偏树是一种支持合并的二叉堆。">
+<meta property="og:updated_time" content="2017-12-10T03:46:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="无聊的数学">
-<meta name="twitter:description" content="数学真有趣">
+<meta name="twitter:title" content="左偏树（可并堆）">
+<meta name="twitter:description" content="顾名思义，左偏树是一种支持合并的二叉堆。">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://sukixj.github.io/2017/10/22/math/"/>
+  <link rel="canonical" href="http://sukixj.github.io/2017/12/10/zuopianshu/"/>
 
 
 
 
 
-  <title>无聊的数学 | Yuki</title>
+  <title>左偏树（可并堆） | Yuki</title>
   
 
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/10/22/math/">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/12/10/zuopianshu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuki">
@@ -278,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">无聊的数学</h1>
+          <h1 class="post-title" itemprop="name headline">左偏树（可并堆）</h1>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T21:52:24+08:00">
-                2017-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T11:43:12+08:00">
+                2017-12-10
               </time>
             
 
@@ -308,7 +308,7 @@
 
           
           
-             <span id="/2017/10/22/math/" class="leancloud_visitors" data-flag-title="无聊的数学">
+             <span id="/2017/12/10/zuopianshu/" class="leancloud_visitors" data-flag-title="左偏树（可并堆）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -339,22 +339,33 @@
       
 
       
-        <p>数学真有趣</p>
+        <p><strong>顾名思义，左偏树是一种支持合并的二叉堆。</strong></p>
 <a id="more"></a>
-<p><del>有关数论的详细的定理证明我就先不写了，否则要写一年。</del></p>
-<ul>
-<li><h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><strong>快速幂会把幂次方运算从O（n）复杂度降低到O（logn）。</strong></li>
-</ul>
-<p><strong>假设求a的b次方，可以把b进行二进制分解，分解成若干个2的 i 次方相加。</strong><br>例如：$a^{11}=a^{2^0+2^1+2^3}$ -&gt; $a^{11}=a^{2^0}<em>a^{2^1}</em>a^{2^3}$<br><strong>注意取模</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function">ll <span class="title">Fast_pow</span><span class="params">(ll a,ll b,ll p)</span> </span>&#123;</div><div class="line">	ll r=<span class="number">1</span>,base=a;</div><div class="line">	<span class="keyword">while</span>(b) &#123;</div><div class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) r=(r%p*base%p)%p;</div><div class="line">		base=(base%p*base%p)%p;</div><div class="line">		b&gt;&gt;=<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> r%p;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>它的每个节点上除了父亲儿子和权值外，又新添加了一个元素——距离（dis[]）,表示当前节点到达子树内叶子节点的最近距离。</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>以小根堆为例：</p>
+<p>1、<strong>节点的权值小于或等于它的儿子的权值。</strong><br> 为了满足堆的性质，即根节点就为最小节点。</p>
+<p>2、<strong>节点左儿子的距离不小于右儿子的距离。</strong><br> 满足左偏的性质。使得我们在插入或删除后更快速的满足堆的性质。</p>
+<p>由这两条性质，我们可以得出左偏树的定义：<strong>左偏树是具有左偏性质的堆有序二叉树。</strong></p>
+<p>我们知道，一个节点必须经由它的子节点才能到达外节点。由于性质2，一个节点的距离实际上就是这个节点一直沿它的右边到达一个外节点所经过的边数，也就是说，我们有</p>
+<p>3、<strong>节点的距离等于它的右儿子的距离+1。</strong><br>由于性质2，它的右子节点必为空节点。为了满足性质3，故前面规定空节点的距离为-1。</p>
+<p>我们的印象中，平衡树是具有非常小的深度的，这也意味着到达任何一个节点所经过的边数很少。左偏树并不是为了快速访问所有的节点而设计的，它的目的是快速访问最小节点以及在对树修改后快速的恢复堆性质。从图中我们可以看到它并不平衡，由于性质2的缘故，它的结构偏向左侧，不过距离的概念和树的深度并不同，左偏树并不意味着左子树的节点数或是深度一定大于右子树。</p>
+<p>经过一大堆推论后，我们总会得出</p>
+<p>4、<strong>一棵N个节点的左偏树距离最多为?log(N+1)?-1。</strong> <del>我也不知道为什么，又不是我证的</del><br>所以：左偏树的操作都是log级别的。</p>
+<h2 id="核心操作"><a href="#核心操作" class="headerlink" title="核心操作"></a>核心操作</h2><h3 id="merge-x-y"><a href="#merge-x-y" class="headerlink" title="merge(x,y)"></a>merge(x,y)</h3><p>把两棵根为x和y的左偏树合并。<br><del>这个很像fhq treap的合并啊。</del></p>
+<p>直接看代码吧：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(!x) <span class="keyword">return</span> y;</div><div class="line">    <span class="keyword">if</span>(!y) <span class="keyword">return</span> x;<span class="comment">//性质 1 x和y已经是两棵树中最小的了</span></div><div class="line">    <span class="keyword">if</span>(val[x]&gt;val[y]) swap(x,y);<span class="comment">// 性质 1</span></div><div class="line">    ch[x][<span class="number">1</span>]=merge(ch[x][<span class="number">1</span>],y);<span class="comment">// 性质 2 要合并dis较大的节点</span></div><div class="line">    fa[ch[x][<span class="number">1</span>]]=x;<span class="comment">// 修改合并后的节点信息</span></div><div class="line">    <span class="keyword">if</span>(dis[ch[x][<span class="number">0</span>]]&lt;dis[ch[x][<span class="number">1</span>]]) </div><div class="line">    swap(ch[x][<span class="number">0</span>],ch[x][<span class="number">1</span>]);<span class="comment">// 性质 2 </span></div><div class="line">    dis[x]=dis[ch[x][<span class="number">1</span>]]+<span class="number">1</span>;<span class="comment">// 性质 3</span></div><div class="line">    <span class="keyword">return</span> x;<span class="comment">// 根节点</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="insert-x"><a href="#insert-x" class="headerlink" title="insert(x)"></a>insert(x)</h3><p>插入一个大小为x的节点</p>
+<p><strong>直接把一个点和和一棵树merge就完了。</strong></p>
+<h3 id="del-min-max-x"><a href="#del-min-max-x" class="headerlink" title="del_min/max(x)"></a>del_min/max(x)</h3><p>删除某棵树中的最大/最小值。</p>
+<p><strong>因为需要删除的值一定在根，直接把根的两个儿子合并。</strong></p>
+<h3 id="build"><a href="#build" class="headerlink" title="build()"></a>build()</h3><p>构造一棵左偏树。</p>
+<p><del>一个一个的insert(nlogn)</del></p>
+<p>把所有点放到队列里，每次取出两个合并，再把新的放到队尾直到剩下一个点。可以证明是O(n)的。</p>
+<h3 id="del-x"><a href="#del-x" class="headerlink" title="del(x)"></a>del(x)</h3><p>删除某个位置的节点。</p>
+<p>丢代码自己意会吧。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> now=fa[x],son=merge(ch[x][<span class="number">0</span>],ch[x][<span class="number">1</span>]);</div><div class="line">	fa[son]=now;</div><div class="line">	val[x]=<span class="number">-1</span>;</div><div class="line">	<span class="keyword">if</span>(now) ch[now][ch[now][<span class="number">1</span>]==x]=son;</div><div class="line">	<span class="keyword">while</span>(now) &#123;</div><div class="line">		<span class="keyword">if</span>(dis[ch[now][<span class="number">0</span>]]&lt;dis[ch[now][<span class="number">1</span>]]) swap(ch[now][<span class="number">0</span>],ch[now][<span class="number">1</span>]);</div><div class="line">		<span class="keyword">if</span>(dis[ch[now][<span class="number">1</span>]]+<span class="number">1</span>==dis[now]) <span class="keyword">return</span>;</div><div class="line">		dis[now]=dis[ch[now][<span class="number">1</span>]]+<span class="number">1</span>;</div><div class="line">		now=f[now];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p><a href="https://www.luogu.org/problemnew/show/3377" target="_blank" rel="external">传送门</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100005</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</div><div class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">'0'</span> || ch&gt;<span class="string">'9'</span>) &#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</div><div class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">'0'</span> &amp;&amp; ch&lt;=<span class="string">'9'</span>) &#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</div><div class="line">    <span class="keyword">return</span> x*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,m,dis[MAXN],fa[MAXN],ch[MAXN][<span class="number">2</span>],val[MAXN];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getf</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span>(fa[x]) x=fa[x];</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(!x) <span class="keyword">return</span> y;</div><div class="line">    <span class="keyword">if</span>(!y) <span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">if</span>(val[x]&gt;val[y]) swap(x,y);</div><div class="line">    ch[x][<span class="number">1</span>]=merge(ch[x][<span class="number">1</span>],y);</div><div class="line">    fa[ch[x][<span class="number">1</span>]]=x;</div><div class="line">    <span class="keyword">if</span>(dis[ch[x][<span class="number">0</span>]]&lt;dis[ch[x][<span class="number">1</span>]]) swap(ch[x][<span class="number">0</span>],ch[x][<span class="number">1</span>]);</div><div class="line">    dis[x]=dis[ch[x][<span class="number">1</span>]]+<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    n=read();</div><div class="line">    m=read();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) val[i]=read();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">        <span class="keyword">int</span> opt=read();</div><div class="line">        <span class="keyword">if</span>(opt==<span class="number">1</span>) &#123;	</div><div class="line">            <span class="keyword">int</span> x=read(),y=read();</div><div class="line">            <span class="keyword">if</span>(x==y || val[x]==<span class="number">-1</span> || val[y]==<span class="number">-1</span>) <span class="keyword">continue</span>;</div><div class="line">            merge(getf(x),getf(y));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> x=read();</div><div class="line">            <span class="keyword">if</span>(val[x]==<span class="number">-1</span>) &#123;</div><div class="line">                <span class="built_in">puts</span>(<span class="string">"-1"</span>);</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            x=getf(x);</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,val[x]);</div><div class="line">            val[x]=<span class="number">-1</span>;</div><div class="line">            fa[ch[x][<span class="number">0</span>]]=fa[ch[x][<span class="number">1</span>]]=<span class="number">0</span>;</div><div class="line">            merge(ch[x][<span class="number">0</span>],ch[x][<span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
-<ul>
-<li><h1 id="素数（质数）"><a href="#素数（质数）" class="headerlink" title="素数（质数）"></a>素数（质数）</h1><p><strong>因子只有1和其本身的数。</strong></p>
-</li>
-<li><h2 id="判断素数O（-sqrt-n-）"><a href="#判断素数O（-sqrt-n-）" class="headerlink" title="判断素数O（$ \sqrt{n} $）"></a>判断素数O（$ \sqrt{n} $）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Prime</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(x&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="built_in">sqrt</span>(x);i++) </div><div class="line">	<span class="keyword">if</span>(!(x%i)) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<p><del>数学暂时弃疗</del>（<del>公式真难写</del>）</p>
 
       
     </div>
@@ -372,7 +383,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NOIP-复习/" rel="tag"># NOIP 复习</a>
+            <a href="/tags/高级数据结构/" rel="tag"># 高级数据结构</a>
+          
+            <a href="/tags/省选/" rel="tag"># 省选</a>
+          
+            <a href="/tags/可并堆/" rel="tag"># 可并堆</a>
           
         </div>
       
@@ -385,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/22/string/" rel="next" title="萌萌哒的字符串">
-                <i class="fa fa-chevron-left"></i> 萌萌哒的字符串
+              <a href="/2017/12/09/fhqtreap/" rel="next" title="fhq Treap（可持久化Treap）">
+                <i class="fa fa-chevron-left"></i> fhq Treap（可持久化Treap）
               </a>
             
           </div>
@@ -394,10 +409,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/28/qbkqccd1/" rel="prev" title="清北考前冲刺Day1">
-                清北考前冲刺Day1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速幂"><span class="nav-number">1.</span> <span class="nav-text">快速幂</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#素数（质数）"><span class="nav-number">2.</span> <span class="nav-text">素数（质数）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#判断素数O（-sqrt-n-）"><span class="nav-number">2.1.</span> <span class="nav-text">判断素数O（$ \sqrt{n} $）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#性质"><span class="nav-number">1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心操作"><span class="nav-number">2.</span> <span class="nav-text">核心操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-x-y"><span class="nav-number">2.1.</span> <span class="nav-text">merge(x,y)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">3.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#insert-x"><span class="nav-number">3.1.</span> <span class="nav-text">insert(x)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#del-min-max-x"><span class="nav-number">3.2.</span> <span class="nav-text">del_min/max(x)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build"><span class="nav-number">3.3.</span> <span class="nav-text">build()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#del-x"><span class="nav-number">3.4.</span> <span class="nav-text">del(x)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板"><span class="nav-number">4.</span> <span class="nav-text">模板</span></a></li></ol></div>
             
 
           </div>
