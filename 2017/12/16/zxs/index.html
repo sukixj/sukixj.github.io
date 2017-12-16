@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NOIP 复习," />
+  <meta name="keywords" content="高级数据结构,省选,主席树," />
 
 
 
@@ -79,16 +79,15 @@
 
 
 
-<meta name="description" content="数学真有趣">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无聊的数学">
-<meta property="og:url" content="http://sukixj.github.io/2017/10/22/math/index.html">
+<meta property="og:title" content="主席树（可持久化线段树） 附实现可持久化数组">
+<meta property="og:url" content="http://sukixj.github.io/2017/12/16/zxs/index.html">
 <meta property="og:site_name" content="Yuki">
-<meta property="og:description" content="数学真有趣">
-<meta property="og:updated_time" content="2017-11-25T08:47:20.000Z">
+<meta property="og:image" content="https://i.loli.net/2017/12/16/5a34b0a77fbf3.jpg">
+<meta property="og:updated_time" content="2017-12-16T05:40:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="无聊的数学">
-<meta name="twitter:description" content="数学真有趣">
+<meta name="twitter:title" content="主席树（可持久化线段树） 附实现可持久化数组">
+<meta name="twitter:image" content="https://i.loli.net/2017/12/16/5a34b0a77fbf3.jpg">
 
 
 
@@ -118,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://sukixj.github.io/2017/10/22/math/"/>
+  <link rel="canonical" href="http://sukixj.github.io/2017/12/16/zxs/"/>
 
 
 
 
 
-  <title>无聊的数学 | Yuki</title>
+  <title>主席树（可持久化线段树） 附实现可持久化数组 | Yuki</title>
   
 
 
@@ -261,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/10/22/math/">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/12/16/zxs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuki">
@@ -278,7 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">无聊的数学</h1>
+          <h1 class="post-title" itemprop="name headline">主席树（可持久化线段树） 附实现可持久化数组</h1>
         
 
         <div class="post-meta">
@@ -290,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T21:52:24+08:00">
-                2017-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T13:34:03+08:00">
+                2017-12-16
               </time>
             
 
@@ -308,7 +307,7 @@
 
           
           
-             <span id="/2017/10/22/math/" class="leancloud_visitors" data-flag-title="无聊的数学">
+             <span id="/2017/12/16/zxs/" class="leancloud_visitors" data-flag-title="主席树（可持久化线段树） 附实现可持久化数组">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -339,22 +338,15 @@
       
 
       
-        <p>数学真有趣</p>
+        <p><img src="https://i.loli.net/2017/12/16/5a34b0a77fbf3.jpg" alt=""></p>
 <a id="more"></a>
-<p><del>有关数论的详细的定理证明我就先不写了，否则要写一年。</del></p>
-<ul>
-<li><h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><strong>快速幂会把幂次方运算从O（n）复杂度降低到O（logn）。</strong></li>
-</ul>
-<p><strong>假设求a的b次方，可以把b进行二进制分解，分解成若干个2的 i 次方相加。</strong><br>例如：$a^{11}=a^{2^0+2^1+2^3}$ -&gt; $a^{11}=a^{2^0}<em>a^{2^1}</em>a^{2^3}$<br><strong>注意取模</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function">ll <span class="title">Fast_pow</span><span class="params">(ll a,ll b,ll p)</span> </span>&#123;</div><div class="line">	ll r=<span class="number">1</span>,base=a;</div><div class="line">	<span class="keyword">while</span>(b) &#123;</div><div class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) r=(r%p*base%p)%p;</div><div class="line">		base=(base%p*base%p)%p;</div><div class="line">		b&gt;&gt;=<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> r%p;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>教程看这里吧 <a href="https://www.bilibili.com/video/av4619406/index_2.html#page=1" target="_blank" rel="external">传送门</a></p>
+<p>这里只是存一下 <a href="https://www.luogu.org/problemnew/show/P3834" target="_blank" rel="external">板子</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 200007</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(ch&lt;<span class="string">'0'</span> || ch&gt;<span class="string">'9'</span>) &#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">while</span>(ch&gt;=<span class="string">'0'</span> &amp;&amp; ch&lt;=<span class="string">'9'</span>) &#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">return</span> x*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,m,cnt,a[MAXN],root[MAXN];</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line"><span class="keyword">struct</span> node &#123;</div><div class="line">	<span class="keyword">int</span> l,r,sum;</div><div class="line">&#125;T[MAXN*<span class="number">40</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getid</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> lower_bound(v.begin(),v.end(),x)-v.begin()+<span class="number">1</span>;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> y,<span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">	T[++cnt]=T[y],T[cnt].sum++,x=cnt;</div><div class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span>;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(mid&gt;=pos) update(l,mid,T[x].l,T[y].l,pos);</div><div class="line">	<span class="keyword">else</span> update(mid+<span class="number">1</span>,r,T[x].r,T[y].r,pos);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span> l;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> sum=T[T[y].l].sum-T[T[x].l].sum;</div><div class="line">	<span class="keyword">if</span>(sum&gt;=k) <span class="keyword">return</span> query(l,mid,T[x].l,T[y].l,k);</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> query(mid+<span class="number">1</span>,r,T[x].r,T[y].r,k-sum);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	n=read(),m=read();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) a[i]=read(),v.push_back(a[i]);</div><div class="line">	sort(v.begin(),v.end());</div><div class="line">	v.erase(unique(v.begin(),v.end()),v.end());</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) update(<span class="number">1</span>,n,root[i],root[i<span class="number">-1</span>],getid(a[i]));</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">		<span class="keyword">int</span> x=read(),y=read(),k=read();</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,v[query(<span class="number">1</span>,n,root[x<span class="number">-1</span>],root[y],k)<span class="number">-1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="可持久化数组"><a href="#可持久化数组" class="headerlink" title="可持久化数组"></a>可持久化数组</h2><p><a href="https://www.luogu.org/problemnew/show/3919" target="_blank" rel="external">传送门</a></p>
+<p><strong>在主席树的基础上稍加改动，先建一棵树修改的时候直接基于历史版本修改。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 1000005</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(ch&lt;<span class="string">'0'</span> || ch&gt;<span class="string">'9'</span>) &#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">while</span>(ch&gt;=<span class="string">'0'</span> &amp;&amp; ch&lt;=<span class="string">'9'</span>) &#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">return</span> x*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,m,cnt,a[MAXN],root[MAXN];</div><div class="line"><span class="keyword">struct</span> node &#123;</div><div class="line">	<span class="keyword">int</span> l,r,sum,val;</div><div class="line">&#125;T[MAXN*<span class="number">20</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> &amp;now)</span> </span>&#123;</div><div class="line">	now=++cnt;</div><div class="line">	<span class="keyword">if</span>(l==r) &#123;</div><div class="line">		T[now].val=a[l];</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	build(l,mid,T[now].l);</div><div class="line">	build(mid+<span class="number">1</span>,r,T[now].r);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> y,<span class="keyword">int</span> pos,<span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">	T[++cnt]=T[y],x=cnt;</div><div class="line">	<span class="keyword">if</span>(l==r) &#123;</div><div class="line">		T[x].val=v;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(mid&gt;=pos) update(l,mid,T[x].l,T[y].l,pos,v);</div><div class="line">	<span class="keyword">else</span> update(mid+<span class="number">1</span>,r,T[x].r,T[y].r,pos,v);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> now,<span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span> T[now].val;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(mid&gt;=pos) <span class="keyword">return</span> query(l,mid,T[now].l,pos);</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> query(mid+<span class="number">1</span>,r,T[now].r,pos);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	n=read(),m=read();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) a[i]=read();</div><div class="line">	build(<span class="number">1</span>,n,root[<span class="number">0</span>]);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</div><div class="line">		<span class="keyword">int</span> Time=read(),opt=read(),x=read();</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">1</span>) update(<span class="number">1</span>,n,root[i],root[Time],x,read());</div><div class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(<span class="number">1</span>,n,root[Time],x)),root[i]=root[Time];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
-<ul>
-<li><h1 id="素数（质数）"><a href="#素数（质数）" class="headerlink" title="素数（质数）"></a>素数（质数）</h1><p><strong>因子只有1和其本身的数。</strong></p>
-</li>
-<li><h2 id="判断素数O（-sqrt-n-）"><a href="#判断素数O（-sqrt-n-）" class="headerlink" title="判断素数O（$ \sqrt{n} $）"></a>判断素数O（$ \sqrt{n} $）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Prime</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(x&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="built_in">sqrt</span>(x);i++) </div><div class="line">	<span class="keyword">if</span>(!(x%i)) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<p><del>数学暂时弃疗</del>（<del>公式真难写</del>）</p>
 
       
     </div>
@@ -372,7 +364,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NOIP-复习/" rel="tag"># NOIP 复习</a>
+            <a href="/tags/高级数据结构/" rel="tag"># 高级数据结构</a>
+          
+            <a href="/tags/省选/" rel="tag"># 省选</a>
+          
+            <a href="/tags/主席树/" rel="tag"># 主席树</a>
           
         </div>
       
@@ -385,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/22/string/" rel="next" title="萌萌哒的字符串">
-                <i class="fa fa-chevron-left"></i> 萌萌哒的字符串
+              <a href="/2017/12/10/zuopianshu/" rel="next" title="左偏树（可并堆）">
+                <i class="fa fa-chevron-left"></i> 左偏树（可并堆）
               </a>
             
           </div>
@@ -394,10 +390,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/28/qbkqccd1/" rel="prev" title="清北考前冲刺Day1">
-                清北考前冲刺Day1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速幂"><span class="nav-number">1.</span> <span class="nav-text">快速幂</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#素数（质数）"><span class="nav-number">2.</span> <span class="nav-text">素数（质数）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#判断素数O（-sqrt-n-）"><span class="nav-number">2.1.</span> <span class="nav-text">判断素数O（$ \sqrt{n} $）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可持久化数组"><span class="nav-number">1.</span> <span class="nav-text">可持久化数组</span></a></li></ol></div>
             
 
           </div>
