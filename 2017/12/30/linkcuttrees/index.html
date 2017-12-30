@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="高级数据结构,省选," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这个数据结构真的恶心，没有之一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态树（Link Cut Tree）">
+<meta property="og:url" content="http://sukixj.github.io/2017/12/30/linkcuttrees/index.html">
+<meta property="og:site_name" content="Yuki">
+<meta property="og:description" content="这个数据结构真的恶心，没有之一。">
+<meta property="og:updated_time" content="2017-12-30T12:39:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态树（Link Cut Tree）">
+<meta name="twitter:description" content="这个数据结构真的恶心，没有之一。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sukixj.github.io/2017/12/30/linkcuttrees/"/>
+
+
+
+
+
+  <title>动态树（Link Cut Tree） | Yuki</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuki</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's You</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sukixj.github.io/2017/12/30/linkcuttrees/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动态树（Link Cut Tree）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T20:34:13+08:00">
+                2017-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/30/linkcuttrees/" class="leancloud_visitors" data-flag-title="动态树（Link Cut Tree）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>这个数据结构真的恶心，没有之一。</strong></p>
+<a id="more"></a>
+<p>orz popoqqq的课件。</p>
+<p>『LCT能干嘛』<br>（1）维护一个序列，支持下列操作：<br><strong>区间求和</strong><br><strong>区间求最值</strong><br><strong>区间修改</strong><br><strong>求连续子段和</strong><br>这个线段树就可以解决 具体做法不加累述了<br>（2）维护一个序列，支持下列操作：<br>区间求和<br>区间求最值<br>区间修改<br>求连续子段和<br><strong>添加一段区间</strong><br><strong>删除一段区间</strong><br><strong>翻转一段区间</strong><br>对Splay初学者来说几乎是噩梦级别的题目<br>其实不难(笑<br>Splay模板题(真心<br>（3）维护一棵树，支持下列操作：<br><strong>链上求和</strong><br><strong>链上求最值</strong><br><strong>链上修改</strong><br><strong>子树修改</strong><br><strong>子树求和</strong><br><strong>换根</strong><br>树链剖分！！！<br>（4）维护一棵树，支持下列操作：<br>链上求和<br>链上求最值<br>链上修改<br><strong>断开树上的一条边</strong><br><strong>连接两个点，保证连接后仍然是一棵树</strong><br>由于树是动态的，我们不能每次操作都重标号一遍 树链剖分搞不了了<br>然而我们可以沿用树链剖分的轻重链剖分的概念<br>既然是动态那么我们肯定要把静态的线段树换成动态的Splay<br>于是就有LCT=树链剖分+Splay</p>
+<p>这就是我说为什么学LCT要先学链剖和splay的原因。</p>
+<p><strong>但是LCT只是用到了splay，树链剖分只是用了思想，代码并没有体现。</strong></p>
+<p>『引入一些概念』<br>Preferred Child：重儿子(为了便于理解这里沿用树链剖分中的命名)，重儿子与父亲节点同在一棵Splay中，一个节点最多只能有一个重儿子<br>Preferred Edge：重(zhòng)边，连接父亲节点和重儿子的边<br>Preferred Path：重链，由重边及重边连接的节点构成的链</p>
+<p><strong>『Auxiliary Tree(辅助树)』</strong><br>由一条重链上的所有节点所构成的Splay称作这条链的辅助树<br>每个点的键值为这个点的深度，即这棵Splay的中序遍历是这条链从链顶到链底的所有节点构成的序列<br>辅助树的根节点的父亲指向链顶的父亲节点，然而链顶的父亲节点的儿子并不指向辅助树的根节点<br>（儿子人爹&amp;&amp;爹不认儿子）<br><strong>原树中的重链 -&gt; 辅助树中两个节点位于同一棵Splay中</strong><br><strong>原树中的轻链 -&gt; 辅助树中子节点所在Splay的根节点的father指向父节点</strong><br>注意原树与辅助树的结构并不相同<br><strong>辅助树的根节点≠原树的根节点</strong><br><strong>辅助树中的father≠原树中的father</strong></p>
+<p><strong>LCT中所有的操作都是在辅助树上完成的，原树只供参考。</strong></p>
+<p>由于要维护的信息已经都在辅助树中维护了，所以LCT无需维护原树，只维护辅助树即可<br>轻链和重链并不是固定的，随着算法的进行，轻链和重链随算法需要和题目要求而变化，然而无论怎么变化，由这棵辅助树一定能生成原树，并满足辅助树的所有性质</p>
+<p>以上内容来自Po姐的ppt，再次深表敬意<br>那么我来说说LCT的几个操作：<br>『Access操作』<br>目的：将x的重边切断，并将x到根的路径上所有的边都搞成重边。<br>具体实现：根据辅助树按照深度为关键字的性质，重建一颗splay。不断地将一个结点的父亲转到根，然后把这个结点接到它父亲的右儿子。<br>『makeroot操作』<br>目的：将原树中的x结点转到根。<br>具体实现：因为原树是虚树，所以在原树中进行变换实际上是在辅助树中进行变换。首先Access一个点，再将这个点在辅助树中转到根。又是根据辅助书按照深度为关键字的性质，将这个点所在的splay树反转，实际上改变了深度的关系，也就是实现的原树的换根。<br>『Link操作』<br>目的：将两个不连通的点连通。换句话来说，合并或扔到一颗树里。<br>具体实现：首先进行makeroot操作，在原树中将一个点转到那个点所在的树的根。然后将这个转到根的点的father接到另外一个点上。可以进行一次splay来update。<br>『Cut操作』<br>目的：将两个连通的点不连通，换句话说，把一棵树拆成两棵树。<br>具体实现：首先进行makeroot操作，在原树中将一个点转到那个点所在的树的根。然后Access另外一个点，把另外一个点在辅助树中转到根。由于这两个点原先是连通的，那么进行Access操作之后两个点在辅助树中一定是一个位于根，一个位于根的左儿子（深度）。所以在辅助树中把这个边砍掉就行了。<br>『Find操作』<br>目的：寻找一个点在原树中的根。<br>用于：判断两个点的连通性。<br>具体实现：首先Access这个点，然后在辅助树中将这个点转到根，由于辅助树按照深度为关键字排序，所以不断地向左子树寻找，就可以找到深度最小的根。</p>
+<p>差不多就这些把，还有一些奇怪的求和啊，维护最大值最小值什么的和线段树平衡树等数据结构基本一样。也难怪，LCT其实就是线段树、平衡树的延伸。</p>
+<hr>
+<h2 id="模板题1"><a href="#模板题1" class="headerlink" title="模板题1"></a><a href="https://www.luogu.org/problemnew/show/3690#sub" target="_blank" rel="external">模板题1</a></h2><p>题目大意：链上异或和，连边，删边，单点修改</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 300005</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(ch&lt;<span class="string">'0'</span> || ch&gt;<span class="string">'9'</span>) &#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">while</span>(ch&gt;=<span class="string">'0'</span> &amp;&amp; ch&lt;=<span class="string">'9'</span>) &#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">return</span> x*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,m,val[MAXN];</div><div class="line"></div><div class="line"><span class="keyword">struct</span> Link_Cut_Tree &#123;</div><div class="line">	<span class="keyword">int</span> top,ch[MAXN][<span class="number">2</span>],fa[MAXN],xr[MAXN],sta[MAXN],rev[MAXN];</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;xr[x]=xr[ch[x][<span class="number">0</span>]]^xr[ch[x][<span class="number">1</span>]]^val[x];&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">push_rev</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(x &amp;&amp; rev[x]) &#123;</div><div class="line">			<span class="keyword">if</span> (ch[x][<span class="number">0</span>]) rev[ch[x][<span class="number">0</span>]]^=<span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span> (ch[x][<span class="number">1</span>]) rev[ch[x][<span class="number">1</span>]]^=<span class="number">1</span>;</div><div class="line">			swap(ch[x][<span class="number">0</span>],ch[x][<span class="number">1</span>]);</div><div class="line">			rev[x]=<span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> ch[fa[x]][<span class="number">1</span>]==x;&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isroot</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> ch[fa[x]][<span class="number">0</span>]!=x &amp;&amp; ch[fa[x]][<span class="number">1</span>]!=x;&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> f=fa[x],ff=fa[f],which=get(x);</div><div class="line">		<span class="keyword">if</span>(!isroot(f)) ch[ff][ch[ff][<span class="number">1</span>]==f]=x;</div><div class="line">		fa[x]=ff;</div><div class="line">		ch[f][which]=ch[x][!which];</div><div class="line">		fa[ch[x][!which]]=f;</div><div class="line">		ch[x][!which]=f;</div><div class="line">		fa[f]=x;</div><div class="line">   	    update(f);</div><div class="line">   	    update(x);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">		top=<span class="number">1</span>;sta[top]=x;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=x;!isroot(i);i=fa[i]) sta[++top]=fa[i];</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=top;i;i--) push_rev(sta[i]);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> f;!isroot(x);rotate(x)) </div><div class="line">			<span class="keyword">if</span>(!isroot(f=fa[x])) rotate(get(f)==get(x)?f:x);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> t=<span class="number">0</span>;x;t=x,x=fa[x]) splay(x),ch[x][<span class="number">1</span>]=t,update(x);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">makeroot</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">		access(x);</div><div class="line">		splay(x);</div><div class="line">		rev[x]^=<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">		access(x);</div><div class="line">		splay(x);</div><div class="line">		<span class="keyword">while</span>(ch[x][<span class="number">0</span>]) x=ch[x][<span class="number">0</span>];</div><div class="line">		<span class="keyword">return</span> x;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">		makeroot(x);</div><div class="line">		access(y);</div><div class="line">		splay(y);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">		split(x,y);</div><div class="line">		ch[y][<span class="number">0</span>]=fa[x]=<span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">		makeroot(x);</div><div class="line">		fa[x]=y;</div><div class="line">		splay(x);</div><div class="line">	&#125;</div><div class="line">&#125;T;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	n=read(),m=read();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) val[i]=read(),T.xr[i]=val[i];</div><div class="line">	<span class="keyword">while</span>(m--) &#123;</div><div class="line">		<span class="keyword">int</span> opt=read();</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">int</span> x=read(),y=read();</div><div class="line">			T.split(x,y);</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,T.xr[y]);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(opt==<span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">int</span> x=read(),y=read(),fx=T.find(x),fy=T.find(y);</div><div class="line">			<span class="keyword">if</span>(fx!=fy) T.link(x,y);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(opt==<span class="number">2</span>) &#123;</div><div class="line">			<span class="keyword">int</span> x=read(),y=read(),fx=T.find(x),fy=T.find(y);</div><div class="line">			<span class="keyword">if</span>(fx==fy) T.cut(x,y);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">int</span> x=read(),y=read();</div><div class="line">			T.access(x);</div><div class="line">			T.splay(x);</div><div class="line">			val[x]=y;</div><div class="line">			T.update(x);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>花了挺长的时间学了LCT，还不是很熟练，还要继续写一些题来熟练。<br>给初学者的建议：<br>1、首先先学会链剖和splay，并能掌握它们的原理，熟练写模板。<br>2、了解LCT和链剖定义的不同，明确Access/makeroot操作各自的作用和原理。<br>3、在理解操作的原理之后，研究Link/Cut/Find操作如何将它们结合起来。</p>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/高级数据结构/" rel="tag"># 高级数据结构</a>
+          
+            <a href="/tags/省选/" rel="tag"># 省选</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/24/noi2015rjbglq/" rel="next" title="NOI2015 软件包管理器">
+                <i class="fa fa-chevron-left"></i> NOI2015 软件包管理器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Yuki" />
+            
+              <p class="site-author-name" itemprop="name">Yuki</p>
+              <p class="site-description motion-element" itemprop="description">I will follow this path until the end</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板题1"><span class="nav-number">1.</span> <span class="nav-text">模板题1</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-child" aria-hidden="true"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+
+  
+</div>
+
+
+  
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme by &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kugxcpVLA8wXKraql2jEFO1r-gzGzoHsz", "Le0otuGmt9RRFHunLbKL5Dj8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kugxcpVLA8wXKraql2jEFO1r-gzGzoHsz", "Le0otuGmt9RRFHunLbKL5Dj8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+</body>
+</html>
+<!-- ҳ������С���� -->
+<script type="text/javascript" src="/js/src/love.js"></script>
